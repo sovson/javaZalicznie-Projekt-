@@ -1,4 +1,48 @@
 package Football;
 
-public class Player {
+public class Player extends Person {
+		private int number;
+		private Float salary;
+		private Foot preferredFoot;
+		private Posiotion playerPosition;
+
+		public Player(int id, String name, Long date, String fullName, Short age, int nationalID, int number, Float salary, Foot preferredFoot, Posiotion playerPosition) {
+				super(id, name, date, fullName, age, nationalID);
+				this.number = number;
+				this.salary = salary;
+				this.preferredFoot = preferredFoot;
+				this.playerPosition = playerPosition;
+		}
+
+		public int getNumber() {
+				return number;
+		}
+
+		public void setNumber(int number) {
+				this.number = number;
+		}
+
+		public Float getSalary() {
+				return salary;
+		}
+
+		public void setSalary(Float salary) {
+				this.salary = salary;
+		}
+
+		public Foot getPreferredFoot() {
+				return preferredFoot;
+		}
+
+		public void setPreferredFoot(Foot preferredFoot) {
+				this.preferredFoot = preferredFoot;
+		}
+
+		public Posiotion getPlayerPosition() {
+				return playerPosition;
+		}
+
+		public void setPlayerPosition(Posiotion playerPosition) {
+				this.playerPosition = playerPosition;
+		}
 }
