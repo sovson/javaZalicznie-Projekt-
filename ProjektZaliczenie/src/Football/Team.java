@@ -1,9 +1,19 @@
 package Football;
 
-public class Team extends DataBaseObject {
+public class Team extends DataBaseObject implements PerformOperation {
+
 		private String teamName;
 		private int pointsLeague;
 		private Coach coach;
+
+		@Override
+		public String toString() {
+				return "Team{" +
+								"teamName='" + teamName + '\'' +
+								", pointsLeague=" + pointsLeague +
+								", coach=" + coach +
+								'}';
+		}
 
 		public Team(int id, String name, Long date, String teamName, int pointsLeague, Coach coach) {
 				super(id, name, date);
@@ -34,5 +44,10 @@ public class Team extends DataBaseObject {
 
 		public void setCoach(Coach coach) {
 				this.coach = coach;
+		}
+
+		@Override
+		public void performOperation() {
+
 		}
 }

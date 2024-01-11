@@ -1,7 +1,19 @@
 package Football;
 
-public class Goal extends DataBaseObject {
+public class Goal extends DataBaseObject implements PerformOperation {
+		@Override
+		public void performOperation() {
+
+		}
+
 		private Player whoScored;
+
+		@Override
+		public String toString() {
+				return "Goal{" +
+								"whoScored=" + whoScored +
+								'}';
+		}
 
 		public Goal(int id, String name, Long date, Player whoScored) {
 				super(id, name, date);

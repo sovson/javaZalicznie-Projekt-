@@ -1,5 +1,5 @@
 package Football;
 
-public enum Posiotion {
+public enum Position {
 		GOALKEEPER, DEFENDER, MIDFIELDER, STRIKER
 }

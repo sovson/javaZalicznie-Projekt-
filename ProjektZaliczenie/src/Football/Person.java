@@ -5,6 +5,15 @@ public abstract class Person extends DataBaseObject {
 		private Short age;
 		private int nationalID;
 
+		@Override
+		public String toString() {
+				return "Person{" +
+								"fullName='" + fullName + '\'' +
+								", age=" + age +
+								", nationalID=" + nationalID +
+								'}';
+		}
+
 		public Person(int id, String name, Long date, String fullName, Short age, int nationalID) {
 				super(id, name, date);
 				this.fullName = fullName;
@@ -35,4 +44,7 @@ public abstract class Person extends DataBaseObject {
 		public void setNationalID(int nationalID) {
 				this.nationalID = nationalID;
 		}
+
+		public abstract String getPersonInfo();
+
 }

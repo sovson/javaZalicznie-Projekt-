@@ -1,9 +1,18 @@
 package Football;
 
-public abstract class DataBaseObject {
+public abstract class DataBaseObject implements PerformOperation {
 		private int id;
 		private String name;
 		private Long date;
+		private static int numberOfObjects = 0;
+
+		public static void incrementNumberOfObjects() {
+				numberOfObjects++;
+		}
+
+		public static int getNumberOfObjects() {
+				return numberOfObjects;
+		}
 
 		public DataBaseObject(int id, String name, Long date) {
 				this.id = id;

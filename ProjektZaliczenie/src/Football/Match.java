@@ -3,13 +3,24 @@ package Football;
 
 import java.util.List;
 
-public class Match extends DataBaseObject {
+public class Match extends DataBaseObject implements PerformOperation {
+
 		private String Stadium;
 		private Team homeTeam;
 		private Team awayTeam;
-
 		private List<Goal> goals;
 		private Referee matchReferee;
+
+		@Override
+		public String toString() {
+				return "Match{" +
+								"Stadium='" + Stadium + '\'' +
+								", homeTeam=" + homeTeam +
+								", awayTeam=" + awayTeam +
+								", goals=" + goals +
+								", matchReferee=" + matchReferee +
+								'}';
+		}
 
 		public Match(int id, String name, Long date, String stadium, Team homeTeam, Team awayTeam, List<Goal> goals, Referee matchReferee) {
 				super(id, name, date);
@@ -58,5 +69,10 @@ public class Match extends DataBaseObject {
 
 		public void setMatchReferee(Referee matchReferee) {
 				this.matchReferee = matchReferee;
+		}
+
+		@Override
+		public void performOperation() {
+
 		}
 }
