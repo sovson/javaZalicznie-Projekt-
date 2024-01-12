@@ -5,7 +5,7 @@ public class Referee extends Person {
 
 		@Override
 		public String toString() {
-				return "Sędzia " + ", ID: " + getId() + ", " + getName() + ", Data urodzin: " + getDate() +
+				return "Sędzia " + ", ID: " + getId() + "Imię " + getName() + ", Data urodzin: " + getDate() +
 								", Wiek: " + getAge() + ", Numer krajowy: " + getNationalID() +
 								"poziom sędziowski: " + level + '\'';
 		}

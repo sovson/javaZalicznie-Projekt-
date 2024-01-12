@@ -41,7 +41,7 @@ public class Main {
 								break;
 						/*case 4:
 								addMatch();
-								break;
+								break; */
 						case 5:
 								addTeam();
 								break;
@@ -52,7 +52,7 @@ public class Main {
 								addGoal();
 								break;
 
-						 */
+
 						case 10:
 								break;
 						default:
@@ -90,7 +90,6 @@ public class Main {
 				System.out.print("Pozycja (GOALKEEPER, DEFENDER, MIDFIELDER, STRIKER): ");
 				Position playerPosition = Position.valueOf(scanner.next().toUpperCase());
 
-				// Utwórz obiekt Player i dodaj do listy obiektów
 				Player newPlayer = new Player(id, name, date, age, nationalID, number, salary, preferredFoot, playerPosition);
 				objectsList.add(newPlayer);
 				System.out.println("Nowy gracz został dodany!");
@@ -99,7 +98,6 @@ public class Main {
 		private static void addCoach() {
 				System.out.println("Dodawanie nowego trenera:");
 
-				// Pobierz dane od użytkownika
 				System.out.print("ID: ");
 				int id = scanner.nextInt();
 
@@ -118,9 +116,7 @@ public class Main {
 				System.out.print("Doświadczenie: ");
 				float experience = scanner.nextFloat();
 
-				// Utwórz obiekt Coach i dodaj do listy obiektów
 				Coach newCoach = new Coach(id, name, date, age, nationalID, experience);
-				// Dodaj newCoach do odpowiedniej listy obiektów, np. coachesList.add(newCoach);
 				objectsList.add(newCoach);
 				System.out.println("Nowy trener został dodany!");
 		}
@@ -128,7 +124,6 @@ public class Main {
 		private static void addReferee() {
 				System.out.println("Dodawanie nowego sędziego:");
 
-				// Pobierz dane od użytkownika
 				System.out.print("ID: ");
 				int id = scanner.nextInt();
 
@@ -147,35 +142,161 @@ public class Main {
 				System.out.print("Poziom sędziego (doświadczenie w latach): ");
 				String level = scanner.next();
 
-				// Utwórz obiekt Referee i dodaj do listy obiektów
 				Referee newReferee = new Referee(id, name, date, age, nationalID, level);
 				objectsList.add(newReferee);
 				System.out.println("Nowy sędzia został dodany!");
 		}
 
-		private static void displayAllObjects() {
-				System.out.println("Wyświetlanie wszystkich obiektów:");
+		private static void addLeague() {
+				System.out.println("Dodawanie nowej ligi:");
 
-				System.out.println("Gracze:");
+				System.out.print("ID: ");
+				int id = scanner.nextInt();
+
+				System.out.print("Nazwa kraju pochodzenia ligii: ");
+				String name = scanner.next();
+
+				System.out.print("Data założenia ligi: ");
+				Long date = scanner.nextLong();
+
+				scanner.nextLine();
+				System.out.print("Nazwa ligi: ");
+				String leagueName = scanner.nextLine();
+
+				League newLeague = new League(id, name, date, leagueName);
+				objectsList.add(newLeague);
+				System.out.println("Nowa liga została dodana!");
+		}
+
+		private static void addGoal() {
+				System.out.println("Dodawanie nowego gola:");
+
+				System.out.print("ID: ");
+				int id = scanner.nextInt();
+
+				System.out.print("Data strzelenia gola: ");
+				Long date = scanner.nextLong();
+
+				System.out.print("ID Strzelca: ");
+				int scorerId = scanner.nextInt();
+				Player whoScored = findPlayerById(scorerId);
+
+				Goal newGoal = new Goal(id, "", date, whoScored);
+				objectsList.add(newGoal);
+
+				System.out.println("Nowy gol został dodany!");
+		}
+
+		private static void addTeam() {
+				System.out.println("Dodawanie nowej drużyny:");
+
+				System.out.print("ID: ");
+				int id = scanner.nextInt();
+
+				System.out.print("Nazwa kraju pochodzenia drużyny: ");
+				String name = scanner.next();
+
+				System.out.print("Data założenia drużyny: ");
+				Long date = scanner.nextLong();
+
+				scanner.nextLine();
+				System.out.print("Nazwa drużyny: ");
+				String teamName = scanner.nextLine();
+
+				System.out.print("Punkty w lidze: ");
+				int pointsLeague = scanner.nextInt();
+
+				System.out.print("ID Trenera: ");
+				int coachId = scanner.nextInt();
+				Coach coach = findCoachById(coachId);
+
+				Team newTeam = new Team(id, name, date, teamName, pointsLeague, coach);
+				objectsList.add(newTeam);
+				System.out.println("Nowa drużyna została dodana!");
+		}
+
+
+		private static void displayAllObjects() {
+				System.out.println("Wyświetlanie wszystkich obiektów: ");
+
+				System.out.println("Gracze: ");
 				for (DataBaseObject obj : objectsList) {
 						if (obj instanceof Player) {
 								System.out.println(obj);
 						}
 				}
 
-				System.out.println("Trenerzy:");
+				System.out.println("Trenerzy: ");
 				for (DataBaseObject obj : objectsList) {
 						if (obj instanceof Coach) {
 								System.out.println(obj);
 						}
 				}
-				System.out.println("Sędzia:");
+				System.out.println("Sędzia: ");
 				for (DataBaseObject obj : objectsList) {
 						if (obj instanceof Referee) {
 								System.out.println(obj);
 						}
 				}
+				System.out.println("Ligii: ");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof League) {
+								System.out.println(obj);
+						}
+				}
+				System.out.println("Gole: ");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Goal) {
+								System.out.println(obj);
+						}
+				}
+				System.out.println("Drużyna: ");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Team) {
+								System.out.println(obj);
+						}
+				}
 
+		}
+
+		private static Player findPlayerById(int playerId) {
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Player && obj.getId() == playerId) {
+								return (Player) obj;
+						}
+				}
+				System.out.println("Gracz o podanym ID nie został znaleziony.");
+				return null;
+		}
+
+		private static Team findTeamById(int teamId) {
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Team && obj.getId() == teamId) {
+								return (Team) obj;
+						}
+				}
+				System.out.println("Drużyna o podanym ID nie została znaleziona.");
+				return null;
+		}
+
+		private static Coach findCoachById(int coachId) {
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Coach && obj.getId() == coachId) {
+								return (Coach) obj;
+						}
+				}
+				System.out.println("Trener o podanym ID nie został znaleziony.");
+				return null;
+		}
+
+		private static Referee findRefereeById(int id) {
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Referee && obj.getId() == id) {
+								return (Referee) obj;
+						}
+				}
+				System.out.println("Sędzia o podanym ID nie został znaleziony.");
+				return null;
 		}
 
 		public static void main(String[] args) {

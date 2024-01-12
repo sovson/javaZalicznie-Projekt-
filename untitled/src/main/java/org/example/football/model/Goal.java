@@ -12,9 +12,8 @@ public class Goal extends DataBaseObject implements PerformOperation {
 
 		@Override
 		public String toString() {
-				return "Goal{" +
-								"whoScored=" + whoScored +
-								'}';
+				return "Gol: " + " ID: " + getId() + ", Data zdobycia gola: " + getDate() +
+								", Kto zdobył bramkę: " + whoScored;
 		}
 
 		public Goal(int id, String name, Long date, Player whoScored) {
