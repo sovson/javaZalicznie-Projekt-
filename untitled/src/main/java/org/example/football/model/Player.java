@@ -11,16 +11,20 @@ public class Player extends Person {
 
 		@Override
 		public String toString() {
-				return "Player{" +
-								"number=" + number +
-								", salary=" + salary +
-								", preferredFoot=" + preferredFoot +
-								", playerPosition=" + playerPosition +
-								'}';
+				return "Piłkarz: " +
+								"ID: " + getId() +
+								", Imię: '" + getName() + '\'' +
+								", Data urodzin (rok): " + getDate() +
+								", Wiek: " + getAge() +
+								", Numer krajowy: " + getNationalID() +
+								", Numer na koszulce: " + number +
+								", Wynagrodzenie: " + salary +
+								", Preferowana noga: " + preferredFoot +
+								", Pozycja piłkarza: " + playerPosition;
 		}
 
-		public Player(int id, String name, Long date, String fullName, Short age, int nationalID, int number, Float salary, Foot preferredFoot, Position playerPosition) {
-				super(id, name, date, fullName, age, nationalID);
+		public Player(int id, String name, Long date, Short age, int nationalID, int number, Float salary, Foot preferredFoot, Position playerPosition) {
+				super(id, name, date, age, nationalID);
 				this.number = number;
 				this.salary = salary;
 				this.preferredFoot = preferredFoot;

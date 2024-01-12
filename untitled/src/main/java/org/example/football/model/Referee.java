@@ -5,13 +5,13 @@ public class Referee extends Person {
 
 		@Override
 		public String toString() {
-				return "Referee{" +
-								"level='" + level + '\'' +
-								'}';
+				return "Sędzia " + ", ID: " + getId() + ", " + getName() + ", Data urodzin: " + getDate() +
+								", Wiek: " + getAge() + ", Numer krajowy: " + getNationalID() +
+								"poziom sędziowski: " + level + '\'';
 		}
 
-		public Referee(int id, String name, Long date, String fullName, Short age, int nationalID, String level) {
-				super(id, name, date, fullName, age, nationalID);
+		public Referee(int id, String name, Long date, Short age, int nationalID, String level) {
+				super(id, name, date, age, nationalID);
 				this.level = level;
 		}
 

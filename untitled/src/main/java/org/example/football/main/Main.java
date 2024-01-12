@@ -1,41 +1,208 @@
 package org.example.football.main;
 
+import java.util.Scanner;
+
 import org.example.football.model.*;
 import org.example.football.utils.Foot;
 import org.example.football.utils.Position;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.ArrayList;
 
+
 public class Main {
-		public static void main(String[] args) {
-				List<DataBaseObject> objectsList = new ArrayList<>();
-				// Dodajemy obiekty różnych klas do listy
-				Coach coach = new Coach(1, "Coach X", System.currentTimeMillis(), "Full Name", (short) 40, 123456, 10.5f);
-				Team team = new Team(2, "Team A", System.currentTimeMillis(), "Team Name", 20, coach);
-				Player player = new Player(3, "John Doe", System.currentTimeMillis(), "Full Name", (short) 25, 789012, 7, 50000f, Foot.RIGHT, Position.STRIKER);
-				Referee referee = new Referee(4, "Referee Y", System.currentTimeMillis(), "Full Name", (short) 35, 345678, "Level A");
-				League league = new League(5, "League X", System.currentTimeMillis(), "Premier League");
-				Goal goal = new Goal(6, "Goal 1", System.currentTimeMillis(), player);
-				Match match = new Match(7, "Match 1", System.currentTimeMillis(), "Stadium A", team, team, List.of(goal), referee);
+		private static Scanner scanner = new Scanner(System.in);
 
-				// Dodajemy obiekty do wspólnej listy
-				objectsList.add(coach);
-				objectsList.add(team);
-				objectsList.add(player);
-				objectsList.add(referee);
-				objectsList.add(league);
-				objectsList.add(goal);
-				objectsList.add(match);
+		private static List<DataBaseObject> objectsList = new ArrayList<>();
 
-				// Przechodzimy przez listę i wywołujemy operację na każdym obiekcie
-				for (DataBaseObject object : objectsList) {
-						object.performOperation();
-				}
-				for (DataBaseObject object : objectsList) {
-						object.performOperation();
-						System.out.println(object.toString()); // Wyświetlamy informacje o obiekcie
-						System.out.println("--------------------------------------");
+		private static void addNewObject() {
+				System.out.println("Wybierz typ obiektu do dodania:");
+				System.out.println("1. Piłkarz");
+				System.out.println("2. Trener");
+				System.out.println("3. Sędzia");
+				System.out.println("4. Mecz");
+				System.out.println("5. Drużyna");
+				System.out.println("6. Liga");
+				System.out.println("7. Gol");
+				System.out.println("10. Cofnij się do menu głównego");
+
+
+				int objectType = scanner.nextInt();
+				switch (objectType) {
+						case 1:
+								addPlayer();
+								break;
+						case 2:
+								addCoach();
+								break;
+						case 3:
+								addReferee();
+								break;
+						/*case 4:
+								addMatch();
+								break;
+						case 5:
+								addTeam();
+								break;
+						case 6:
+								addLeague();
+								break;
+						case 7:
+								addGoal();
+								break;
+
+						 */
+						case 10:
+								break;
+						default:
+								System.out.println("Nieprawidłowy typ obiektu. Powrót do menu głównego.");
 				}
 		}
+
+		private static void addPlayer() {
+				System.out.println("Dodawanie nowego gracza:");
+
+				System.out.print("ID: ");
+				int id = scanner.nextInt();
+
+				System.out.print("Imię: ");
+				String name = scanner.next();
+
+				System.out.print("Data urodzenia: ");
+				Long date = scanner.nextLong();
+
+				System.out.print("Wiek: ");
+				Short age = scanner.nextShort();
+
+				System.out.print("Numer krajowy: ");
+				int nationalID = scanner.nextInt();
+
+				System.out.print("Numer gracza: ");
+				int number = scanner.nextInt();
+
+				System.out.print("Wynagrodzenie: ");
+				float salary = scanner.nextFloat();
+
+				System.out.print("Preferowana noga (LEFT, RIGHT, BOTH): ");
+				Foot preferredFoot = Foot.valueOf(scanner.next().toUpperCase());
+
+				System.out.print("Pozycja (GOALKEEPER, DEFENDER, MIDFIELDER, STRIKER): ");
+				Position playerPosition = Position.valueOf(scanner.next().toUpperCase());
+
+				// Utwórz obiekt Player i dodaj do listy obiektów
+				Player newPlayer = new Player(id, name, date, age, nationalID, number, salary, preferredFoot, playerPosition);
+				objectsList.add(newPlayer);
+				System.out.println("Nowy gracz został dodany!");
+		}
+
+		private static void addCoach() {
+				System.out.println("Dodawanie nowego trenera:");
+
+				// Pobierz dane od użytkownika
+				System.out.print("ID: ");
+				int id = scanner.nextInt();
+
+				System.out.print("Imię: ");
+				String name = scanner.next();
+
+				System.out.print("Data urodzenia: ");
+				Long date = scanner.nextLong();
+
+				System.out.print("Wiek: ");
+				Short age = scanner.nextShort();
+
+				System.out.print("Numer krajowy: ");
+				int nationalID = scanner.nextInt();
+
+				System.out.print("Doświadczenie: ");
+				float experience = scanner.nextFloat();
+
+				// Utwórz obiekt Coach i dodaj do listy obiektów
+				Coach newCoach = new Coach(id, name, date, age, nationalID, experience);
+				// Dodaj newCoach do odpowiedniej listy obiektów, np. coachesList.add(newCoach);
+				objectsList.add(newCoach);
+				System.out.println("Nowy trener został dodany!");
+		}
+
+		private static void addReferee() {
+				System.out.println("Dodawanie nowego sędziego:");
+
+				// Pobierz dane od użytkownika
+				System.out.print("ID: ");
+				int id = scanner.nextInt();
+
+				System.out.print("Imię: ");
+				String name = scanner.next();
+
+				System.out.print("Data urodzenia: ");
+				Long date = scanner.nextLong();
+
+				System.out.print("Wiek: ");
+				Short age = scanner.nextShort();
+
+				System.out.print("Numer krajowy: ");
+				int nationalID = scanner.nextInt();
+
+				System.out.print("Poziom sędziego (doświadczenie w latach): ");
+				String level = scanner.next();
+
+				// Utwórz obiekt Referee i dodaj do listy obiektów
+				Referee newReferee = new Referee(id, name, date, age, nationalID, level);
+				objectsList.add(newReferee);
+				System.out.println("Nowy sędzia został dodany!");
+		}
+
+		private static void displayAllObjects() {
+				System.out.println("Wyświetlanie wszystkich obiektów:");
+
+				System.out.println("Gracze:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Player) {
+								System.out.println(obj);
+						}
+				}
+
+				System.out.println("Trenerzy:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Coach) {
+								System.out.println(obj);
+						}
+				}
+				System.out.println("Sędzia:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Referee) {
+								System.out.println(obj);
+						}
+				}
+
+		}
+
+		public static void main(String[] args) {
+				int choice;
+
+				do {
+						System.out.println("1. Dodaj nowy obiekt");
+						System.out.println("3. Wyświetlanie wszystkich zapamiętanych obiektów");
+						System.out.println("2. Wyjdź");
+						System.out.print("Wybierz opcję: ");
+						choice = scanner.nextInt();
+
+						switch (choice) {
+								case 1:
+										addNewObject();
+										break;
+								case 3:
+										displayAllObjects();
+										break;
+								case 2:
+										System.out.println("Koniec programu.");
+										break;
+								default:
+										System.out.println("Nieprawidłowa opcja. Spróbuj ponownie.");
+						}
+				} while (choice != 2);
+		}
+
+
 }

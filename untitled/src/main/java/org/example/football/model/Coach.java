@@ -5,13 +5,12 @@ public class Coach extends Person {
 
 		@Override
 		public String toString() {
-				return "Coach{" +
-								"experience=" + experience +
-								'}';
+				return "Trener: " + ", ID: " + getId() + "Imię: " + getName() + ", Data urodzin (rok): " + getDate() +
+								", Wiek: " + getAge() + ", Numer krajowy: " + getNationalID() + ", Doświadczenie (lata): " + experience;
 		}
 
-		public Coach(int id, String name, Long date, String fullName, Short age, int nationalID, Float experience) {
-				super(id, name, date, fullName, age, nationalID);
+		public Coach(int id, String name, Long date, Short age, int nationalID, Float experience) {
+				super(id, name, date, age, nationalID);
 				this.experience = experience;
 		}
 
