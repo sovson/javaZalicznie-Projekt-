@@ -414,6 +414,111 @@ public class Main {
 
 		}
 
+		private static void displayObjectsByType() {
+				System.out.println("Wybierz typ obiektu do wyświetlenia:");
+				System.out.println("1. Piłkarze");
+				System.out.println("2. Trenerzy");
+				System.out.println("3. Sędziowie");
+				System.out.println("4. Mecze");
+				System.out.println("5. Drużyny");
+				System.out.println("6. Ligi");
+				System.out.println("7. Gole");
+				System.out.println("10. Cofnij się do menu głównego");
+
+				int objectType = scanner.nextInt();
+				switch (objectType) {
+						case 1:
+								displayPlayers();
+								break;
+						case 2:
+								displayCoaches();
+								break;
+						case 3:
+								displayReferees();
+								break;
+						case 4:
+								displayMatches();
+								break;
+						case 5:
+								displayTeams();
+								break;
+						case 6:
+								displayLeagues();
+								break;
+						case 7:
+								displayGoals();
+								break;
+						case 10:
+								break;
+						default:
+								System.out.println("Nieprawidłowy typ obiektu. Powrót do menu głównego.");
+				}
+		}
+
+		private static void displayPlayers() {
+				System.out.println("Lista piłkarzy:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Player) {
+								System.out.println(obj);
+						}
+				}
+		}
+
+		private static void displayCoaches() {
+				System.out.println("Lista trenerów:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Coach) {
+								System.out.println(obj);
+						}
+				}
+		}
+
+		private static void displayReferees() {
+				System.out.println("Lista sędziów:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Referee) {
+								System.out.println(obj);
+						}
+				}
+		}
+
+		private static void displayMatches() {
+				System.out.println("Lista meczy:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Match) {
+								System.out.println(obj);
+						}
+				}
+		}
+
+		private static void displayTeams() {
+				System.out.println("Lista drużyn:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Team) {
+								System.out.println(obj);
+						}
+				}
+		}
+
+		private static void displayLeagues() {
+				System.out.println("Lista lig:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof League) {
+								System.out.println(obj);
+						}
+				}
+		}
+
+		private static void displayGoals() {
+				System.out.println("Lista goli:");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Goal) {
+								System.out.println(obj);
+						}
+				}
+		}
+
+
 		private static Player findPlayerById(int playerId) {
 				for (DataBaseObject obj : objectsList) {
 						if (obj instanceof Player && obj.getId() == playerId) {
@@ -472,6 +577,7 @@ public class Main {
 						System.out.println("1. Dodaj nowy obiekt");
 						System.out.println("2. Usuń obiekt");
 						System.out.println("3. Wyświetlanie wszystkich zapamiętanych obiektów");
+						System.out.println("4. Wyświetlanie obiektów według typu");
 						System.out.println("5. Wyjdź");
 						System.out.print("Wybierz opcję: ");
 						choice = scanner.nextInt();
@@ -485,6 +591,9 @@ public class Main {
 										break;
 								case 3:
 										displayAllObjects();
+										break;
+								case 4:
+										displayObjectsByType();
 										break;
 
 								case 5:
