@@ -14,8 +14,10 @@ public class Match extends DataBaseObject implements PerformOperation {
 
 		@Override
 		public String toString() {
-				return "Match{" +
-								"Stadium='" + Stadium + '\'' +
+				return "Mecz: " + "ID: " + getId() +
+								", Nazwa meczu (Drużyna X v Drużyna Y): '" + getName() + '\'' +
+								", Data meczu (rok): " + getDate() +
+								", Stadium='" + Stadium + '\'' +
 								", homeTeam=" + homeTeam +
 								", awayTeam=" + awayTeam +
 								", goals=" + goals +

@@ -39,9 +39,9 @@ public class Main {
 						case 3:
 								addReferee();
 								break;
-						/*case 4:
+						case 4:
 								addMatch();
-								break; */
+								break;
 						case 5:
 								addTeam();
 								break;
@@ -215,11 +215,70 @@ public class Main {
 				System.out.println("Nowa drużyna została dodana!");
 		}
 
+		private static void addMatch() {
+				System.out.println("Dodawanie nowego meczu:");
+
+				System.out.print("ID: ");
+				int id = scanner.nextInt();
+
+				scanner.nextLine();
+				System.out.print("Nazwa meczu: ");
+				String name = scanner.nextLine();
+
+				System.out.print("Data meczu: ");
+				Long date = scanner.nextLong();
+
+				System.out.print("Stadion: ");
+				String stadium = scanner.next();
+
+				System.out.print("ID Drużyny gospodarzy: ");
+				int homeTeamId = scanner.nextInt();
+				Team homeTeam = findTeamById(homeTeamId);
+
+				System.out.print("ID Drużyny gości: ");
+				int awayTeamId = scanner.nextInt();
+				Team awayTeam = findTeamById(awayTeamId);
+
+				System.out.print("ID Sędziego: ");
+				int refereeId = scanner.nextInt();
+				Referee referee = findRefereeById(refereeId);
+
+				List<Goal> goals = new ArrayList<>();
+				System.out.print("Czy chcesz dodać gole do meczu? (T/N): ");
+				char addGoalsChoice = scanner.next().charAt(0);
+
+				if (addGoalsChoice == 'T' || addGoalsChoice == 't') {
+						int goalNumber = 1;
+						while (true) {
+								System.out.print("ID Gola do dodania: ");
+								int goalId = scanner.nextInt();
+								Goal goal = findGoalById(goalId);
+
+								if (goal != null) {
+										goals.add(goal);
+										System.out.print("Czy chcesz dodać kolejnego gola? (T/N): ");
+										char addAnotherGoal = scanner.next().charAt(0);
+										if (addAnotherGoal != 'T' && addAnotherGoal != 't') {
+												break;
+										}
+								} else {
+										System.out.println("Nie znaleziono gola o podanym ID.");
+								}
+						}
+				}
+
+				Match newMatch = new Match(id, name, date, stadium, homeTeam, awayTeam, goals, referee);
+				objectsList.add(newMatch);
+
+				System.out.println("Nowy mecz został dodany!");
+
+		}
 
 		private static void displayAllObjects() {
 				System.out.println("Wyświetlanie wszystkich obiektów: ");
 
-				System.out.println("Gracze: ");
+
+				System.out.println("Piłkarze: ");
 				for (DataBaseObject obj : objectsList) {
 						if (obj instanceof Player) {
 								System.out.println(obj);
@@ -253,6 +312,13 @@ public class Main {
 				System.out.println("Drużyna: ");
 				for (DataBaseObject obj : objectsList) {
 						if (obj instanceof Team) {
+								System.out.println(obj);
+						}
+				}
+
+				System.out.println("Mecz: ");
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Match) {
 								System.out.println(obj);
 						}
 				}
@@ -298,6 +364,17 @@ public class Main {
 				System.out.println("Sędzia o podanym ID nie został znaleziony.");
 				return null;
 		}
+
+		private static Goal findGoalById(int goalId) {
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof Goal && obj.getId() == goalId) {
+								return (Goal) obj;
+						}
+				}
+				System.out.println("Nie znaleziono gola o podanym ID.");
+				return null;
+		}
+
 
 		public static void main(String[] args) {
 				int choice;
