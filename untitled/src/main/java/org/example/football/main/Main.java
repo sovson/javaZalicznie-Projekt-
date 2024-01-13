@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.InputMismatchException;
 
 
 public class Main {
@@ -29,7 +30,7 @@ public class Main {
 				System.out.println("10. Cofnij się do menu głównego");
 
 
-				int objectType = scanner.nextInt();
+				int objectType = readIntInput();
 				switch (objectType) {
 						case 1:
 								addPlayer();
@@ -65,25 +66,25 @@ public class Main {
 				System.out.println("Dodawanie nowego gracza:");
 
 				System.out.print("ID: ");
-				int id = scanner.nextInt();
+				int id = readIntInput();
 
 				System.out.print("Imię: ");
 				String name = scanner.next();
 
 				System.out.print("Data urodzenia: ");
-				Long date = scanner.nextLong();
+				Long date = readLongInput();
 
 				System.out.print("Wiek: ");
-				Short age = scanner.nextShort();
+				Short age = readShortInput();
 
 				System.out.print("Numer krajowy: ");
-				int nationalID = scanner.nextInt();
+				int nationalID = readIntInput();
 
 				System.out.print("Numer gracza: ");
-				int number = scanner.nextInt();
+				int number = readIntInput();
 
 				System.out.print("Wynagrodzenie: ");
-				float salary = scanner.nextFloat();
+				float salary = readShortFloat();
 
 				System.out.print("Preferowana noga (LEFT, RIGHT, BOTH): ");
 				Foot preferredFoot = Foot.valueOf(scanner.next().toUpperCase());
@@ -96,26 +97,27 @@ public class Main {
 				System.out.println("Nowy gracz został dodany!");
 		}
 
+
 		private static void addCoach() {
 				System.out.println("Dodawanie nowego trenera:");
 
 				System.out.print("ID: ");
-				int id = scanner.nextInt();
+				int id = readIntInput();
 
 				System.out.print("Imię: ");
 				String name = scanner.next();
 
 				System.out.print("Data urodzenia: ");
-				Long date = scanner.nextLong();
+				Long date = readLongInput();
 
 				System.out.print("Wiek: ");
-				Short age = scanner.nextShort();
+				Short age = readShortInput();
 
 				System.out.print("Numer krajowy: ");
-				int nationalID = scanner.nextInt();
+				int nationalID = readIntInput();
 
 				System.out.print("Doświadczenie: ");
-				float experience = scanner.nextFloat();
+				float experience = readShortFloat();
 
 				Coach newCoach = new Coach(id, name, date, age, nationalID, experience);
 				objectsList.add(newCoach);
@@ -126,19 +128,19 @@ public class Main {
 				System.out.println("Dodawanie nowego sędziego:");
 
 				System.out.print("ID: ");
-				int id = scanner.nextInt();
+				int id = readIntInput();
 
 				System.out.print("Imię: ");
 				String name = scanner.next();
 
 				System.out.print("Data urodzenia: ");
-				Long date = scanner.nextLong();
+				Long date = readLongInput();
 
 				System.out.print("Wiek: ");
-				Short age = scanner.nextShort();
+				Short age = readShortInput();
 
 				System.out.print("Numer krajowy: ");
-				int nationalID = scanner.nextInt();
+				int nationalID = readIntInput();
 
 				System.out.print("Poziom sędziego (doświadczenie w latach): ");
 				String level = scanner.next();
@@ -152,13 +154,13 @@ public class Main {
 				System.out.println("Dodawanie nowej ligi:");
 
 				System.out.print("ID: ");
-				int id = scanner.nextInt();
+				int id = readIntInput();
 
 				System.out.print("Nazwa kraju pochodzenia ligii: ");
 				String name = scanner.next();
 
 				System.out.print("Data założenia ligi: ");
-				Long date = scanner.nextLong();
+				Long date = readLongInput();
 
 				scanner.nextLine();
 				System.out.print("Nazwa ligi: ");
@@ -173,13 +175,13 @@ public class Main {
 				System.out.println("Dodawanie nowego gola:");
 
 				System.out.print("ID: ");
-				int id = scanner.nextInt();
+				int id = readIntInput();
 
 				System.out.print("Data strzelenia gola: ");
-				Long date = scanner.nextLong();
+				Long date = readLongInput();
 
 				System.out.print("ID Strzelca: ");
-				int scorerId = scanner.nextInt();
+				int scorerId = readIntInput();
 				Player whoScored = findPlayerById(scorerId);
 
 				Goal newGoal = new Goal(id, "", date, whoScored);
@@ -192,23 +194,23 @@ public class Main {
 				System.out.println("Dodawanie nowej drużyny:");
 
 				System.out.print("ID: ");
-				int id = scanner.nextInt();
+				int id = readIntInput();
 
 				System.out.print("Nazwa kraju pochodzenia drużyny: ");
 				String name = scanner.next();
 
 				System.out.print("Data założenia drużyny: ");
-				Long date = scanner.nextLong();
+				Long date = readLongInput();
 
 				scanner.nextLine();
 				System.out.print("Nazwa drużyny: ");
 				String teamName = scanner.nextLine();
 
 				System.out.print("Punkty w lidze: ");
-				int pointsLeague = scanner.nextInt();
+				int pointsLeague = readIntInput();
 
 				System.out.print("ID Trenera: ");
-				int coachId = scanner.nextInt();
+				int coachId = readIntInput();
 				Coach coach = findCoachById(coachId);
 
 				Team newTeam = new Team(id, name, date, teamName, pointsLeague, coach);
@@ -220,28 +222,28 @@ public class Main {
 				System.out.println("Dodawanie nowego meczu:");
 
 				System.out.print("ID: ");
-				int id = scanner.nextInt();
+				int id = readIntInput();
 
 				scanner.nextLine();
 				System.out.print("Nazwa meczu: ");
 				String name = scanner.nextLine();
 
 				System.out.print("Data meczu: ");
-				Long date = scanner.nextLong();
+				Long date = readLongInput();
 
 				System.out.print("Stadion: ");
 				String stadium = scanner.next();
 
 				System.out.print("ID Drużyny gospodarzy: ");
-				int homeTeamId = scanner.nextInt();
+				int homeTeamId = readIntInput();
 				Team homeTeam = findTeamById(homeTeamId);
 
 				System.out.print("ID Drużyny gości: ");
-				int awayTeamId = scanner.nextInt();
+				int awayTeamId = readIntInput();
 				Team awayTeam = findTeamById(awayTeamId);
 
 				System.out.print("ID Sędziego: ");
-				int refereeId = scanner.nextInt();
+				int refereeId = readIntInput();
 				Referee referee = findRefereeById(refereeId);
 
 				List<Goal> goals = new ArrayList<>();
@@ -252,7 +254,7 @@ public class Main {
 						int goalNumber = 1;
 						while (true) {
 								System.out.print("ID Gola do dodania: ");
-								int goalId = scanner.nextInt();
+								int goalId = readIntInput();
 								Goal goal = findGoalById(goalId);
 
 								if (goal != null) {
@@ -286,7 +288,7 @@ public class Main {
 				System.out.println("7. Gol");
 				System.out.println("10. Cofnij się do menu głównego");
 
-				int objectType = scanner.nextInt();
+				int objectType = readIntInput();
 				switch (objectType) {
 						case 1:
 								removeObject(1);
@@ -331,7 +333,7 @@ public class Main {
 
 		private static void removeObject(int objectType) {
 				System.out.print("Podaj ID obiektu do usunięcia: ");
-				int objectId = scanner.nextInt();
+				int objectId = readIntInput();
 
 				switch (objectType) {
 						case 1:
@@ -425,7 +427,7 @@ public class Main {
 				System.out.println("7. Gole");
 				System.out.println("10. Cofnij się do menu głównego");
 
-				int objectType = scanner.nextInt();
+				int objectType = readIntInput();
 				switch (objectType) {
 						case 1:
 								displayPlayers();
@@ -582,6 +584,49 @@ public class Main {
 				return null;
 		}
 
+		private static int readIntInput() {
+				while (true) {
+						try {
+								return scanner.nextInt();
+						} catch (InputMismatchException e) {
+								System.out.println("Błąd! Wprowadź poprawną liczbę całkowitą (typu int).");
+								scanner.next();
+						}
+				}
+		}
+
+		private static long readLongInput() {
+				while (true) {
+						try {
+								return scanner.nextLong();
+						} catch (InputMismatchException e) {
+								System.out.println("Błąd! Wprowadź poprawną liczbę całkowitą (typu long).");
+								scanner.next();
+						}
+				}
+		}
+
+		private static short readShortInput() {
+				while (true) {
+						try {
+								return scanner.nextShort();
+						} catch (InputMismatchException e) {
+								System.out.println("Błąd! Wprowadź poprawną liczbę całkowitą (typu short).");
+								scanner.next();
+						}
+				}
+		}
+
+		private static float readShortFloat() {
+				while (true) {
+						try {
+								return scanner.nextFloat();
+						} catch (InputMismatchException e) {
+								System.out.println("Błąd! Wprowadź poprawną liczbę zmiennoprzecinkową (typu float).");
+								scanner.next();
+						}
+				}
+		}
 
 		public static void main(String[] args) {
 				int choice;
@@ -594,7 +639,7 @@ public class Main {
 						System.out.println("5. Wyświetlanie obiektów, których nazwa zawiera podany ciąg znaków");
 						System.out.println("10. Wyjdź");
 						System.out.print("Wybierz opcję: ");
-						choice = scanner.nextInt();
+						choice = readIntInput();
 
 						switch (choice) {
 								case 1:
