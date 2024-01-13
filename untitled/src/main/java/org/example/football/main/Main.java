@@ -518,6 +518,19 @@ public class Main {
 				}
 		}
 
+		private static void displayObjectsByName() {
+				System.out.println("Podaj ciąg znaków do wyszukania:");
+				String searchString = scanner.next();
+
+				System.out.println("Wyniki wyszukiwania:");
+
+				for (DataBaseObject obj : objectsList) {
+						if (obj.getName().contains(searchString)) {
+								System.out.println(obj);
+						}
+				}
+		}
+
 
 		private static Player findPlayerById(int playerId) {
 				for (DataBaseObject obj : objectsList) {
@@ -578,7 +591,8 @@ public class Main {
 						System.out.println("2. Usuń obiekt");
 						System.out.println("3. Wyświetlanie wszystkich zapamiętanych obiektów");
 						System.out.println("4. Wyświetlanie obiektów według typu");
-						System.out.println("5. Wyjdź");
+						System.out.println("5. Wyświetlanie obiektów, których nazwa zawiera podany ciąg znaków");
+						System.out.println("10. Wyjdź");
 						System.out.print("Wybierz opcję: ");
 						choice = scanner.nextInt();
 
@@ -595,14 +609,16 @@ public class Main {
 								case 4:
 										displayObjectsByType();
 										break;
-
 								case 5:
+										displayObjectsByName();
+										break;
+								case 10:
 										System.out.println("Koniec programu.");
 										break;
 								default:
 										System.out.println("Nieprawidłowa opcja. Spróbuj ponownie.");
 						}
-				} while (choice != 5);
+				} while (choice != 10);
 		}
 
 
