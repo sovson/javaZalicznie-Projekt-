@@ -9,6 +9,7 @@ import org.example.football.utils.Position;
 import javax.swing.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Main {
@@ -274,6 +275,94 @@ public class Main {
 
 		}
 
+		private static void deleteObject() {
+				System.out.println("Wybierz typ obiektu do usunięcia:");
+				System.out.println("1. Piłkarz");
+				System.out.println("2. Trener");
+				System.out.println("3. Sędzia");
+				System.out.println("4. Mecz");
+				System.out.println("5. Drużyna");
+				System.out.println("6. Liga");
+				System.out.println("7. Gol");
+				System.out.println("10. Cofnij się do menu głównego");
+
+				int objectType = scanner.nextInt();
+				switch (objectType) {
+						case 1:
+								removeObject(1);
+								break;
+						case 2:
+								removeObject(2);
+								break;
+						case 3:
+								removeObject(3);
+								break;
+						case 4:
+								removeObject(4);
+								break;
+						case 5:
+								removeObject(5);
+								break;
+						case 6:
+								removeObject(6);
+								break;
+						case 7:
+								removeObject(7);
+								break;
+						case 10:
+								break;
+						default:
+								System.out.println("Nieprawidłowy typ obiektu. Powrót do menu głównego.");
+				}
+		}
+
+
+		private static void removeObjectById(int objectId, Class<?> objectType) {
+				for (Iterator<DataBaseObject> iterator = objectsList.iterator(); iterator.hasNext(); ) {
+						DataBaseObject obj = iterator.next();
+						if (obj.getId() == objectId && obj.getClass().equals(objectType)) {
+								iterator.remove();
+								System.out.println("Obiekt został usunięty.");
+								return;
+						}
+				}
+				System.out.println("Obiekt o podanym ID i typie nie został znaleziony.");
+		}
+
+		private static void removeObject(int objectType) {
+				System.out.print("Podaj ID obiektu do usunięcia: ");
+				int objectId = scanner.nextInt();
+
+				switch (objectType) {
+						case 1:
+								removeObjectById(objectId, Player.class);
+								break;
+						case 2:
+								removeObjectById(objectId, Coach.class);
+								break;
+						case 3:
+								removeObjectById(objectId, Referee.class);
+								break;
+						case 4:
+								removeObjectById(objectId, Match.class);
+								break;
+						case 5:
+								removeObjectById(objectId, Team.class);
+								break;
+						case 6:
+								removeObjectById(objectId, League.class);
+								break;
+						case 7:
+								removeObjectById(objectId, Goal.class);
+								break;
+						case 10:
+								break;
+						default:
+								System.out.println("Nieprawidłowy typ obiektu. Powrót do menu głównego.");
+				}
+		}
+
+
 		private static void displayAllObjects() {
 				System.out.println("Wyświetlanie wszystkich obiektów: ");
 
@@ -381,8 +470,9 @@ public class Main {
 
 				do {
 						System.out.println("1. Dodaj nowy obiekt");
+						System.out.println("2. Usuń obiekt");
 						System.out.println("3. Wyświetlanie wszystkich zapamiętanych obiektów");
-						System.out.println("2. Wyjdź");
+						System.out.println("5. Wyjdź");
 						System.out.print("Wybierz opcję: ");
 						choice = scanner.nextInt();
 
@@ -390,16 +480,20 @@ public class Main {
 								case 1:
 										addNewObject();
 										break;
+								case 2:
+										deleteObject();
+										break;
 								case 3:
 										displayAllObjects();
 										break;
-								case 2:
+
+								case 5:
 										System.out.println("Koniec programu.");
 										break;
 								default:
 										System.out.println("Nieprawidłowa opcja. Spróbuj ponownie.");
 						}
-				} while (choice != 2);
+				} while (choice != 5);
 		}
 
 
