@@ -1,22 +1,16 @@
 package org.example.football.main;
 
-import java.util.Scanner;
-
 import org.example.football.model.*;
 import org.example.football.utils.Foot;
 import org.example.football.utils.Position;
 
-import javax.swing.*;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.InputMismatchException;
+import java.util.*;
 
 
 public class Main {
-		private static Scanner scanner = new Scanner(System.in);
+		private static final Scanner scanner = new Scanner(System.in);
 
-		private static List<DataBaseObject> objectsList = new ArrayList<>();
+		private static final List<DataBaseObject> objectsList = new ArrayList<>();
 
 		private static void addNewObject() {
 				System.out.println("Wybierz typ obiektu do dodania:");
@@ -28,7 +22,6 @@ public class Main {
 				System.out.println("6. Liga");
 				System.out.println("7. Gol");
 				System.out.println("10. Cofnij się do menu głównego");
-
 
 				int objectType = readIntInput();
 				switch (objectType) {
@@ -80,17 +73,17 @@ public class Main {
 				System.out.print("Numer krajowy: ");
 				int nationalID = readIntInput();
 
-				System.out.print("Numer gracza: ");
+				System.out.print("Numer na koszulce: ");
 				int number = readIntInput();
 
 				System.out.print("Wynagrodzenie: ");
 				float salary = readShortFloat();
 
-				System.out.print("Preferowana noga (LEFT, RIGHT, BOTH): ");
-				Foot preferredFoot = Foot.valueOf(scanner.next().toUpperCase());
+				System.out.print("Preferowana noga: ");
+				Foot preferredFoot = selectPreferredFoot();
 
-				System.out.print("Pozycja (GOALKEEPER, DEFENDER, MIDFIELDER, STRIKER): ");
-				Position playerPosition = Position.valueOf(scanner.next().toUpperCase());
+				System.out.print("Pozycja: ");
+				Position playerPosition = selectPlayerPosition();
 
 				Player newPlayer = new Player(id, name, date, age, nationalID, number, salary, preferredFoot, playerPosition);
 				objectsList.add(newPlayer);
@@ -251,7 +244,6 @@ public class Main {
 				char addGoalsChoice = scanner.next().charAt(0);
 
 				if (addGoalsChoice == 'T' || addGoalsChoice == 't') {
-						int goalNumber = 1;
 						while (true) {
 								System.out.print("ID Gola do dodania: ");
 								int goalId = readIntInput();
@@ -628,6 +620,49 @@ public class Main {
 				}
 		}
 
+		private static Foot selectPreferredFoot() {
+				System.out.println(" ");
+				System.out.println("1. LEFT");
+				System.out.println("2. RIGHT");
+				System.out.println("3. BOTH");
+
+				int choice = readIntInput();
+				switch (choice) {
+						case 1:
+								return Foot.LEFT;
+						case 2:
+								return Foot.RIGHT;
+						case 3:
+								return Foot.BOTH;
+						default:
+								System.out.println("Nieprawidłowy wybór, domyślnie ustawiono LEFT.");
+								return Foot.LEFT;
+				}
+		}
+
+		private static Position selectPlayerPosition() {
+				System.out.println(" ");
+				System.out.println("1. GOALKEEPER");
+				System.out.println("2. DEFENDER");
+				System.out.println("3. MIDFIELDER");
+				System.out.println("4. STRIKER");
+
+				int choice = readIntInput();
+				switch (choice) {
+						case 1:
+								return Position.GOALKEEPER;
+						case 2:
+								return Position.DEFENDER;
+						case 3:
+								return Position.MIDFIELDER;
+						case 4:
+								return Position.STRIKER;
+						default:
+								System.out.println("Nieprawidłowy wybór, domyślnie ustawiono GOALKEEPER.");
+								return Position.GOALKEEPER;
+				}
+		}
+
 		public static void main(String[] args) {
 				int choice;
 
@@ -637,6 +672,7 @@ public class Main {
 						System.out.println("3. Wyświetlanie wszystkich zapamiętanych obiektów");
 						System.out.println("4. Wyświetlanie obiektów według typu");
 						System.out.println("5. Wyświetlanie obiektów, których nazwa zawiera podany ciąg znaków");
+						System.out.println("6. Wykonanie operacji zawartej w interfejsie na wszystkich obiektach klas implementujących ten interfejs.");
 						System.out.println("10. Wyjdź");
 						System.out.print("Wybierz opcję: ");
 						choice = readIntInput();
@@ -656,6 +692,8 @@ public class Main {
 										break;
 								case 5:
 										displayObjectsByName();
+										break;
+								case 6:
 										break;
 								case 10:
 										System.out.println("Koniec programu.");

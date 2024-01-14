@@ -14,15 +14,15 @@ public class Match extends DataBaseObject implements PerformOperation {
 
 		@Override
 		public String toString() {
-				return "Mecz: " + "ID: " + getId() +
-								", Nazwa meczu (Drużyna X v Drużyna Y): '" + getName() + '\'' +
+				return "Mecz: " +
+								"ID: " + getId() +
+								", Nazwa meczu: " + getName() + '\'' +
 								", Data meczu (rok): " + getDate() +
-								", Stadium='" + Stadium + '\'' +
-								", homeTeam=" + homeTeam +
-								", awayTeam=" + awayTeam +
-								", goals=" + goals +
-								", matchReferee=" + matchReferee +
-								'}';
+								", Stadium: " + Stadium + '\'' +
+								", Gospodarze: " + homeTeam +
+								", Goście: " + awayTeam +
+								", Gole: " + goals +
+								", Sędzia: " + matchReferee;
 		}
 
 		public Match(int id, String name, Long date, String stadium, Team homeTeam, Team awayTeam, List<Goal> goals, Referee matchReferee) {

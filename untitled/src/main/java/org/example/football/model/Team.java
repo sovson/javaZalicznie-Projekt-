@@ -10,13 +10,14 @@ public class Team extends DataBaseObject implements PerformOperation {
 
 		@Override
 		public String toString() {
-				return "Drużyna: " + "ID: " + getId() +
+				return "Drużyna: " +
+								"ID: " + getId() +
 								", Nazwa kraju pochodzenia teamu: '" + getName() + '\'' +
 								", Data założenia drużyny (rok): " + getDate() +
 								", Nazwa drużyny: '" + teamName + '\'' +
 								", Ilość punktów w lidze: " + pointsLeague +
-								", Trener: " + coach +
-								'}';
+								", Trener: " + coach;
+
 		}
 
 		public Team(int id, String name, Long date, String teamName, int pointsLeague, Coach coach) {

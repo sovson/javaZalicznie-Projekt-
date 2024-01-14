@@ -12,8 +12,11 @@ public class League extends DataBaseObject implements PerformOperation {
 
 		@Override
 		public String toString() {
-				return "Liga: " + ", ID: " + getId() + ", Nazwa kraju pochodzenia ligii: " + getName() + ", Data założenia ligii: " + getDate() +
-								", Nazwa ligii ='" + leagueName + '\'';
+				return "Liga: " +
+								"ID: " + getId() +
+								", Nazwa kraju pochodzenia ligii: " + getName() +
+								", Data założenia ligii: " + getDate() +
+								", Nazwa ligii: '" + leagueName + '\'';
 		}
 
 		public League(int id, String name, Long date, String leagueName) {
