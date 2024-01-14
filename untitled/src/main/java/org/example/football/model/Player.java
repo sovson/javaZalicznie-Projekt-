@@ -23,8 +23,8 @@ public class Player extends Person {
 								", Pozycja piłkarza: " + playerPosition;
 		}
 
-		public Player(int id, String name, Long date, Short age, int nationalID, int number, Float salary, Foot preferredFoot, Position playerPosition) {
-				super(id, name, date, age, nationalID);
+		public Player(String name, Long date, Short age, int nationalID, int number, Float salary, Foot preferredFoot, Position playerPosition) {
+				super(name, date, age, nationalID);
 				this.number = number;
 				this.salary = salary;
 				this.preferredFoot = preferredFoot;

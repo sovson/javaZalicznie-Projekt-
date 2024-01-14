@@ -14,8 +14,8 @@ public abstract class Person extends DataBaseObject {
 								'}';
 		}
 
-		public Person(int id, String name, Long date, Short age, int nationalID) {
-				super(id, name, date);
+		public Person(String name, Long date, Short age, int nationalID) {
+				super(IdGenerator.generateId(), name, date);
 
 				this.age = age;
 				this.nationalID = nationalID;

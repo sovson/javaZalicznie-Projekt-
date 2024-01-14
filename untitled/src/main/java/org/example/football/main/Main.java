@@ -58,8 +58,6 @@ public class Main {
 		private static void addPlayer() {
 				System.out.println("Dodawanie nowego gracza:");
 
-				System.out.print("ID: ");
-				int id = readIntInput();
 
 				System.out.print("Imię: ");
 				String name = scanner.next();
@@ -85,17 +83,15 @@ public class Main {
 				System.out.print("Pozycja: ");
 				Position playerPosition = selectPlayerPosition();
 
-				Player newPlayer = new Player(id, name, date, age, nationalID, number, salary, preferredFoot, playerPosition);
+				Player newPlayer = new Player(name, date, age, nationalID, number, salary, preferredFoot, playerPosition);
 				objectsList.add(newPlayer);
-				System.out.println("Nowy gracz został dodany!");
+				System.out.println("Nowy gracz został dodany!" + newPlayer.getId());
 		}
 
 
 		private static void addCoach() {
 				System.out.println("Dodawanie nowego trenera:");
 
-				System.out.print("ID: ");
-				int id = readIntInput();
 
 				System.out.print("Imię: ");
 				String name = scanner.next();
@@ -112,7 +108,7 @@ public class Main {
 				System.out.print("Doświadczenie: ");
 				float experience = readShortFloat();
 
-				Coach newCoach = new Coach(id, name, date, age, nationalID, experience);
+				Coach newCoach = new Coach(name, date, age, nationalID, experience);
 				objectsList.add(newCoach);
 				System.out.println("Nowy trener został dodany!");
 		}
@@ -120,8 +116,7 @@ public class Main {
 		private static void addReferee() {
 				System.out.println("Dodawanie nowego sędziego:");
 
-				System.out.print("ID: ");
-				int id = readIntInput();
+				int id = IdGenerator.generateId();
 
 				System.out.print("Imię: ");
 				String name = scanner.next();
@@ -138,7 +133,7 @@ public class Main {
 				System.out.print("Poziom sędziego (doświadczenie w latach): ");
 				String level = scanner.next();
 
-				Referee newReferee = new Referee(id, name, date, age, nationalID, level);
+				Referee newReferee = new Referee(name, date, age, nationalID, level);
 				objectsList.add(newReferee);
 				System.out.println("Nowy sędzia został dodany!");
 		}
@@ -146,8 +141,7 @@ public class Main {
 		private static void addLeague() {
 				System.out.println("Dodawanie nowej ligi:");
 
-				System.out.print("ID: ");
-				int id = readIntInput();
+				int id = IdGenerator.generateId();
 
 				System.out.print("Nazwa kraju pochodzenia ligii: ");
 				String name = scanner.next();
@@ -167,8 +161,7 @@ public class Main {
 		private static void addGoal() {
 				System.out.println("Dodawanie nowego gola:");
 
-				System.out.print("ID: ");
-				int id = readIntInput();
+				int id = IdGenerator.generateId();
 
 				System.out.print("Data strzelenia gola: ");
 				Long date = readLongInput();
@@ -186,8 +179,7 @@ public class Main {
 		private static void addTeam() {
 				System.out.println("Dodawanie nowej drużyny:");
 
-				System.out.print("ID: ");
-				int id = readIntInput();
+				int id = IdGenerator.generateId();
 
 				System.out.print("Nazwa kraju pochodzenia drużyny: ");
 				String name = scanner.next();
@@ -215,7 +207,7 @@ public class Main {
 				System.out.println("Dodawanie nowego meczu:");
 
 				System.out.print("ID: ");
-				int id = readIntInput();
+				int id = IdGenerator.generateId();
 
 				scanner.nextLine();
 				System.out.print("Nazwa meczu: ");

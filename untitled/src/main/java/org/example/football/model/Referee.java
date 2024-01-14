@@ -14,8 +14,8 @@ public class Referee extends Person {
 								", poziom sędziowski (w latach): " + level + '\'';
 		}
 
-		public Referee(int id, String name, Long date, Short age, int nationalID, String level) {
-				super(id, name, date, age, nationalID);
+		public Referee(String name, Long date, Short age, int nationalID, String level) {
+				super(name, date, age, nationalID);
 				this.level = level;
 		}
 
