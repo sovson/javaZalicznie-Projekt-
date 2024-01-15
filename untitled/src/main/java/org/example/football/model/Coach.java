@@ -10,13 +10,13 @@ public class Coach extends Person implements PerformOperation {
 				return "Trener: " +
 								"ID: " + getId() +
 								", Imię: " + getName() +
-								", Data urodzin (rok): " + getDate() +
+								", Data urodzin: " + getDate() +
 								", Wiek: " + getAge() +
 								", Numer krajowy: " + getNationalID() +
 								", Doświadczenie (lata): " + experience;
 		}
 
-		public Coach(String name, Long date, Short age, int nationalID, Float experience) {
+		public Coach(String name, String date, Short age, int nationalID, Float experience) {
 				super(name, date, age, nationalID);
 				this.experience = experience;
 		}

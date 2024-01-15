@@ -15,32 +15,32 @@ public class Main {
 
 		private static void testData() {
 				// Dodawanie przykładowych danych dla piłkarzy
-				objectsList.add(new Player("Robert Lewandowski", 19900121L, (short) 33, 10, 9, 5000000F, Foot.RIGHT, Position.STRIKER));
-				objectsList.add(new Player("Lionel Messi", 19870624L, (short) 35, 10, 10, 7000000F, Foot.LEFT, Position.STRIKER));
+				objectsList.add(new Player("Robert Lewandowski", "15.01.2024", (short) 33, 10, 9, 5000000F, Foot.RIGHT, Position.STRIKER));
+				objectsList.add(new Player("Lionel Messi", "15.01.2024", (short) 35, 10, 10, 7000000F, Foot.LEFT, Position.STRIKER));
 
 				// Dodawanie przykładowych danych dla trenerów
-				objectsList.add(new Coach("Jurgen Klopp", 19670616L, (short) 55, 101, 20F));
-				objectsList.add(new Coach("Pep Guardiola", 19710118L, (short) 51, 102, 22F));
+				objectsList.add(new Coach("Jurgen Klopp", "15.01.2024", (short) 55, 101, 20F));
+				objectsList.add(new Coach("Pep Guardiola", "15.01.2024", (short) 51, 102, 22F));
 
 				// Dodawanie przykładowych danych dla sędziów
-				objectsList.add(new Referee("Howard Webb", 19710714L, (short) 51, 201, "WorldClass"));
-				objectsList.add(new Referee("Pierluigi Collina", 19600213L, (short) 62, 202, "Legendary"));
+				objectsList.add(new Referee("Howard Webb", "15.01.2024", (short) 51, 201, "WorldClass"));
+				objectsList.add(new Referee("Pierluigi Collina", "15.01.2024", (short) 62, 202, "Legendary"));
 
 				// Dodawanie przykładowych danych dla lig
-				objectsList.add(new League(IdGenerator.generateId(), "Poland", 19920820L, "Ekstraklasa"));
-				objectsList.add(new League(IdGenerator.generateId(), "England", 19920820L, "Premier League"));
+				objectsList.add(new League(IdGenerator.generateId(), "Poland", "15.01.2024", "Ekstraklasa"));
+				objectsList.add(new League(IdGenerator.generateId(), "England", "15.01.2024", "Premier League"));
 
 				// Dodawanie przykładowych danych dla goli
 				Player scorer1 = findPlayerById(1);
 				Player scorer2 = findPlayerById(2);
-				objectsList.add(new Goal(IdGenerator.generateId(), "", 20230101L, scorer1));
-				objectsList.add(new Goal(IdGenerator.generateId(), "", 20230101L, scorer2));
+				objectsList.add(new Goal(IdGenerator.generateId(), "", "75", scorer1));
+				objectsList.add(new Goal(IdGenerator.generateId(), "", "34", scorer2));
 
 				// Dodawanie przykładowych danych dla drużyn
 				Coach coach1 = findCoachById(3);
 				Coach coach2 = findCoachById(4);
-				objectsList.add(new Team(IdGenerator.generateId(), "Poland", 19201020L, "National Team", 15, coach1));
-				objectsList.add(new Team(IdGenerator.generateId(), "Barcelona", 18990101L, "FC Barcelona", 25, coach2));
+				objectsList.add(new Team(IdGenerator.generateId(), "Poland", "15.01.2024", "National Team", 15, coach1));
+				objectsList.add(new Team(IdGenerator.generateId(), "Barcelona", "15.01.2024", "FC Barcelona", 25, coach2));
 
 				// Dodawanie przykładowych danych dla meczów
 				Team homeTeam = findTeamById(11);
@@ -49,7 +49,7 @@ public class Main {
 				List<Goal> goals = new ArrayList<>();
 				goals.add(findGoalById(9));
 				goals.add(findGoalById(10));
-				objectsList.add(new Match(IdGenerator.generateId(), "Friendly Match", 20230101L, "Stadium", homeTeam, awayTeam, goals, referee));
+				objectsList.add(new Match(IdGenerator.generateId(), "Friendly Match", "15.01.2024", "Stadium", homeTeam, awayTeam, goals, referee));
 		}
 
 		private static void addNewObject() {
@@ -98,12 +98,11 @@ public class Main {
 		private static void addPlayer() {
 				System.out.println("Dodawanie nowego gracza:");
 
-
 				System.out.print("Imię: ");
 				String name = scanner.next();
 
-				System.out.print("Data urodzenia: ");
-				Long date = readLongInput();
+				System.out.print("Data urodzenia (DD.MM.YYYY): ");
+				String date = scanner.next();
 
 				System.out.print("Wiek: ");
 				Short age = readShortInput();
@@ -128,7 +127,6 @@ public class Main {
 				System.out.println("Nowy gracz został dodany!" + newPlayer.getId());
 		}
 
-
 		private static void addCoach() {
 				System.out.println("Dodawanie nowego trenera:");
 
@@ -136,8 +134,8 @@ public class Main {
 				System.out.print("Imię: ");
 				String name = scanner.next();
 
-				System.out.print("Data urodzenia: ");
-				Long date = readLongInput();
+				System.out.print("Data urodzenia (DD.MM.YYYY): ");
+				String date = scanner.next();
 
 				System.out.print("Wiek: ");
 				Short age = readShortInput();
@@ -161,8 +159,8 @@ public class Main {
 				System.out.print("Imię: ");
 				String name = scanner.next();
 
-				System.out.print("Data urodzenia: ");
-				Long date = readLongInput();
+				System.out.print("Data urodzenia (DD.MM.YYYY): ");
+				String date = scanner.next();
 
 				System.out.print("Wiek: ");
 				Short age = readShortInput();
@@ -186,8 +184,8 @@ public class Main {
 				System.out.print("Nazwa kraju pochodzenia ligii: ");
 				String name = scanner.next();
 
-				System.out.print("Data założenia ligi: ");
-				Long date = readLongInput();
+				System.out.print("Data założenia ligi (DD.MM.YYYY): ");
+				String date = scanner.next();
 
 				scanner.nextLine();
 				System.out.print("Nazwa ligi: ");
@@ -203,8 +201,8 @@ public class Main {
 
 				int id = IdGenerator.generateId();
 
-				System.out.print("Data strzelenia gola: ");
-				Long date = readLongInput();
+				System.out.print("Minuta strzelenia gola w meczu: ");
+				String date = scanner.next();
 
 				System.out.print("ID Strzelca: ");
 				int scorerId = readIntInput();
@@ -224,8 +222,8 @@ public class Main {
 				System.out.print("Nazwa kraju pochodzenia drużyny: ");
 				String name = scanner.next();
 
-				System.out.print("Data założenia drużyny: ");
-				Long date = readLongInput();
+				System.out.print("Data założenia drużyny (DD.MM.YYYY): ");
+				String date = scanner.next();
 
 				scanner.nextLine();
 				System.out.print("Nazwa drużyny: ");
@@ -253,8 +251,8 @@ public class Main {
 				System.out.print("Nazwa meczu: ");
 				String name = scanner.nextLine();
 
-				System.out.print("Data meczu: ");
-				Long date = readLongInput();
+				System.out.print("Data meczu (DD.MM.YYYY): ");
+				String date = scanner.next();
 
 				System.out.print("Stadion: ");
 				String stadium = scanner.next();

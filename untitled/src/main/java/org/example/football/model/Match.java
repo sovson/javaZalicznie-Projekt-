@@ -16,16 +16,16 @@ public class Match extends DataBaseObject {
 		public String toString() {
 				return "Mecz: " +
 								"ID: " + getId() +
-								", Nazwa meczu: " + getName() + '\'' +
-								", Data meczu (rok): " + getDate() +
-								", Stadium: " + Stadium + '\'' +
-								", Gospodarze: " + homeTeam +
-								", Goście: " + awayTeam +
+								", Nazwa meczu: " + getName() +
+								", Data meczu: " + getDate() +
+								", Stadium: " + Stadium +
+								", Gospodarze: " + homeTeam.getTeamName() +
+								", Goście: " + awayTeam.getTeamName() +
 								", Gole: " + goals +
-								", Sędzia: " + matchReferee;
+								", Sędzia: " + matchReferee.getName();
 		}
 
-		public Match(int id, String name, Long date, String stadium, Team homeTeam, Team awayTeam, List<Goal> goals, Referee matchReferee) {
+		public Match(int id, String name, String date, String stadium, Team homeTeam, Team awayTeam, List<Goal> goals, Referee matchReferee) {
 				super(id, name, date);
 				Stadium = stadium;
 				this.homeTeam = homeTeam;

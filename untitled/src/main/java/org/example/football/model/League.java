@@ -16,7 +16,7 @@ public class League extends DataBaseObject {
 								", Nazwa ligii: '" + leagueName + '\'';
 		}
 
-		public League(int id, String name, Long date, String leagueName) {
+		public League(int id, String name, String date, String leagueName) {
 				super(id, name, date);
 				this.leagueName = leagueName;
 		}

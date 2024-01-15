@@ -15,7 +15,7 @@ public class Player extends Person implements PerformOperation {
 				return "Piłkarz: " +
 								"ID: " + getId() +
 								", Imię: '" + getName() + '\'' +
-								", Data urodzin (rok): " + getDate() +
+								", Data urodzin: " + getDate() +
 								", Wiek: " + getAge() +
 								", Numer krajowy: " + getNationalID() +
 								", Numer na koszulce: " + number +
@@ -24,7 +24,7 @@ public class Player extends Person implements PerformOperation {
 								", Pozycja piłkarza: " + playerPosition;
 		}
 
-		public Player(String name, Long date, Short age, int nationalID, int number, Float salary, Foot preferredFoot, Position playerPosition) {
+		public Player(String name, String date, Short age, int nationalID, int number, Float salary, Foot preferredFoot, Position playerPosition) {
 				super(name, date, age, nationalID);
 				this.number = number;
 				this.salary = salary;

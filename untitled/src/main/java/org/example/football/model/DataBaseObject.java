@@ -5,7 +5,7 @@ import org.example.football.utils.PerformOperation;
 public abstract class DataBaseObject {
 		private int id;
 		private String name;
-		private Long date;
+		private String date;
 		private static int numberOfObjects = 0;
 
 		public static void incrementNumberOfObjects() {
@@ -16,7 +16,7 @@ public abstract class DataBaseObject {
 				return numberOfObjects;
 		}
 
-		public DataBaseObject(int id, String name, Long date) {
+		public DataBaseObject(int id, String name, String date) {
 				this.id = id;
 				this.name = name;
 				this.date = date;
@@ -38,11 +38,11 @@ public abstract class DataBaseObject {
 				this.name = name;
 		}
 
-		public Long getDate() {
+		public String getDate() {
 				return date;
 		}
 
-		public void setDate(Long date) {
+		public void setDate(String date) {
 				this.date = date;
 		}
 }

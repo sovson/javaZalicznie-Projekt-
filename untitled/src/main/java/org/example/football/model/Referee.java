@@ -9,14 +9,14 @@ public class Referee extends Person implements PerformOperation {
 		public String toString() {
 				return "Sędzia " +
 								"ID: " + getId() +
-								", Imię " + getName() +
+								", Imię: " + getName() +
 								", Data urodzin: " + getDate() +
 								", Wiek: " + getAge() +
 								", Numer krajowy: " + getNationalID() +
-								", poziom sędziowski (w latach): " + level + '\'';
+								", poziom sędziowski (w latach): " + level;
 		}
 
-		public Referee(String name, Long date, Short age, int nationalID, String level) {
+		public Referee(String name, String date, Short age, int nationalID, String level) {
 				super(name, date, age, nationalID);
 				this.level = level;
 		}

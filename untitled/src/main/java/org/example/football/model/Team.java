@@ -12,14 +12,14 @@ public class Team extends DataBaseObject {
 				return "Drużyna: " +
 								"ID: " + getId() +
 								", Nazwa kraju pochodzenia teamu: '" + getName() + '\'' +
-								", Data założenia drużyny (rok): " + getDate() +
+								", Data założenia drużyny: " + getDate() +
 								", Nazwa drużyny: '" + teamName + '\'' +
 								", Ilość punktów w lidze: " + pointsLeague +
-								", Trener: " + coach;
+								", Trener: " + coach.getName();
 
 		}
 
-		public Team(int id, String name, Long date, String teamName, int pointsLeague, Coach coach) {
+		public Team(int id, String name, String date, String teamName, int pointsLeague, Coach coach) {
 				super(id, name, date);
 				this.teamName = teamName;
 				this.pointsLeague = pointsLeague;
