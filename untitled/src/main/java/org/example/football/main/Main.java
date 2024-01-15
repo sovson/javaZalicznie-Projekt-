@@ -54,14 +54,7 @@ public class Main {
 
 		private static void addNewObject() {
 				System.out.println("Wybierz typ obiektu do dodania:");
-				System.out.println("1. Piłkarz");
-				System.out.println("2. Trener");
-				System.out.println("3. Sędzia");
-				System.out.println("4. Gol");
-				System.out.println("5. Drużyna");
-				System.out.println("6. Liga");
-				System.out.println("7. Mecz");
-				System.out.println("10. Cofnij się do menu głównego");
+				listObj();
 
 				int objectType = readIntInput();
 				switch (objectType) {
@@ -340,7 +333,6 @@ public class Main {
 				}
 		}
 
-
 		private static void removeObjectById(int objectId, Class<?> objectType) {
 				for (Iterator<DataBaseObject> iterator = objectsList.iterator(); iterator.hasNext(); ) {
 						DataBaseObject obj = iterator.next();
@@ -386,69 +378,26 @@ public class Main {
 				}
 		}
 
-
 		private static void displayAllObjects() {
 				System.out.println("Wyświetlanie wszystkich obiektów: ");
 
+				Class<?>[] objectTypes = {Player.class, Coach.class, Referee.class, League.class, Goal.class, Team.class};
 
-				System.out.println("Piłkarze: ");
-				for (DataBaseObject obj : objectsList) {
-						if (obj instanceof Player) {
-								System.out.println(obj);
-						}
-				}
+				for (Class<?> objectType : objectTypes) {
+						String typeName = objectType.getSimpleName();
 
-				System.out.println("Trenerzy: ");
-				for (DataBaseObject obj : objectsList) {
-						if (obj instanceof Coach) {
-								System.out.println(obj);
+						System.out.println(typeName + ": ");
+						for (DataBaseObject obj : objectsList) {
+								if (objectType.isInstance(obj)) {
+										System.out.println(obj);
+								}
 						}
 				}
-				System.out.println("Sędzia: ");
-				for (DataBaseObject obj : objectsList) {
-						if (obj instanceof Referee) {
-								System.out.println(obj);
-						}
-				}
-				System.out.println("Ligii: ");
-				for (DataBaseObject obj : objectsList) {
-						if (obj instanceof League) {
-								System.out.println(obj);
-						}
-				}
-				System.out.println("Gole: ");
-				for (DataBaseObject obj : objectsList) {
-						if (obj instanceof Goal) {
-								System.out.println(obj);
-						}
-				}
-				System.out.println("Drużyna: ");
-				for (DataBaseObject obj : objectsList) {
-						if (obj instanceof Team) {
-								System.out.println(obj);
-						}
-				}
-
-				System.out.println("Mecz: ");
-				for (DataBaseObject obj : objectsList) {
-						if (obj instanceof Match) {
-								System.out.println(obj);
-						}
-				}
-
 		}
 
 		private static void displayObjectsByType() {
 				System.out.println("Wybierz typ obiektu do wyświetlenia:");
-				System.out.println("1. Piłkarze");
-				System.out.println("2. Trenerzy");
-				System.out.println("3. Sędziowie");
-				System.out.println("4. Mecze");
-				System.out.println("5. Drużyny");
-				System.out.println("6. Ligi");
-				System.out.println("7. Gole");
-				System.out.println("10. Cofnij się do menu głównego");
-
+				listObj();
 				int objectType = readIntInput();
 				switch (objectType) {
 						case 1:
@@ -729,6 +678,16 @@ public class Main {
 				System.out.println("Zmniejszono wiek dla wszystkich obiektów obsługujących ten interfejs.");
 		}
 
+		private static void listObj() {
+				System.out.println("1. Piłkarze");
+				System.out.println("2. Trenerzy");
+				System.out.println("3. Sędziowie");
+				System.out.println("4. Mecze");
+				System.out.println("5. Drużyny");
+				System.out.println("6. Ligi");
+				System.out.println("7. Gole");
+				System.out.println("10. Cofnij się do menu głównego");
+		}
 
 		public static void main(String[] args) {
 				int choice;
