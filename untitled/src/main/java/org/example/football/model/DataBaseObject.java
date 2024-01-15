@@ -2,7 +2,7 @@ package org.example.football.model;
 
 import org.example.football.utils.PerformOperation;
 
-public abstract class DataBaseObject implements PerformOperation {
+public abstract class DataBaseObject {
 		private int id;
 		private String name;
 		private Long date;

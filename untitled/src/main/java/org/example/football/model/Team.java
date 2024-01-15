@@ -1,8 +1,7 @@
 package org.example.football.model;
 
-import org.example.football.utils.PerformOperation;
 
-public class Team extends DataBaseObject implements PerformOperation {
+public class Team extends DataBaseObject {
 
 		private String teamName;
 		private int pointsLeague;
@@ -51,8 +50,5 @@ public class Team extends DataBaseObject implements PerformOperation {
 				this.coach = coach;
 		}
 
-		@Override
-		public void performOperation() {
 
-		}
 }

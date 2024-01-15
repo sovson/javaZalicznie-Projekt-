@@ -2,6 +2,7 @@ package org.example.football.main;
 
 import org.example.football.model.*;
 import org.example.football.utils.Foot;
+import org.example.football.utils.PerformOperation;
 import org.example.football.utils.Position;
 
 import java.util.*;
@@ -12,15 +13,54 @@ public class Main {
 
 		private static final List<DataBaseObject> objectsList = new ArrayList<>();
 
+		private static void testData() {
+				// Dodawanie przykładowych danych dla piłkarzy
+				objectsList.add(new Player("Robert Lewandowski", 19900121L, (short) 33, 10, 9, 5000000F, Foot.RIGHT, Position.STRIKER));
+				objectsList.add(new Player("Lionel Messi", 19870624L, (short) 35, 10, 10, 7000000F, Foot.LEFT, Position.STRIKER));
+
+				// Dodawanie przykładowych danych dla trenerów
+				objectsList.add(new Coach("Jurgen Klopp", 19670616L, (short) 55, 101, 20F));
+				objectsList.add(new Coach("Pep Guardiola", 19710118L, (short) 51, 102, 22F));
+
+				// Dodawanie przykładowych danych dla sędziów
+				objectsList.add(new Referee("Howard Webb", 19710714L, (short) 51, 201, "WorldClass"));
+				objectsList.add(new Referee("Pierluigi Collina", 19600213L, (short) 62, 202, "Legendary"));
+
+				// Dodawanie przykładowych danych dla lig
+				objectsList.add(new League(IdGenerator.generateId(), "Poland", 19920820L, "Ekstraklasa"));
+				objectsList.add(new League(IdGenerator.generateId(), "England", 19920820L, "Premier League"));
+
+				// Dodawanie przykładowych danych dla goli
+				Player scorer1 = findPlayerById(1);
+				Player scorer2 = findPlayerById(2);
+				objectsList.add(new Goal(IdGenerator.generateId(), "", 20230101L, scorer1));
+				objectsList.add(new Goal(IdGenerator.generateId(), "", 20230101L, scorer2));
+
+				// Dodawanie przykładowych danych dla drużyn
+				Coach coach1 = findCoachById(3);
+				Coach coach2 = findCoachById(4);
+				objectsList.add(new Team(IdGenerator.generateId(), "Poland", 19201020L, "National Team", 15, coach1));
+				objectsList.add(new Team(IdGenerator.generateId(), "Barcelona", 18990101L, "FC Barcelona", 25, coach2));
+
+				// Dodawanie przykładowych danych dla meczów
+				Team homeTeam = findTeamById(11);
+				Team awayTeam = findTeamById(12);
+				Referee referee = findRefereeById(6);
+				List<Goal> goals = new ArrayList<>();
+				goals.add(findGoalById(9));
+				goals.add(findGoalById(10));
+				objectsList.add(new Match(IdGenerator.generateId(), "Friendly Match", 20230101L, "Stadium", homeTeam, awayTeam, goals, referee));
+		}
+
 		private static void addNewObject() {
 				System.out.println("Wybierz typ obiektu do dodania:");
 				System.out.println("1. Piłkarz");
 				System.out.println("2. Trener");
 				System.out.println("3. Sędzia");
-				System.out.println("4. Mecz");
+				System.out.println("4. Gol");
 				System.out.println("5. Drużyna");
 				System.out.println("6. Liga");
-				System.out.println("7. Gol");
+				System.out.println("7. Mecz");
 				System.out.println("10. Cofnij się do menu głównego");
 
 				int objectType = readIntInput();
@@ -35,7 +75,7 @@ public class Main {
 								addReferee();
 								break;
 						case 4:
-								addMatch();
+								addGoal();
 								break;
 						case 5:
 								addTeam();
@@ -44,7 +84,7 @@ public class Main {
 								addLeague();
 								break;
 						case 7:
-								addGoal();
+								addMatch();
 								break;
 
 
@@ -655,6 +695,43 @@ public class Main {
 				}
 		}
 
+		private static void interfaceMenu() {
+				System.out.println("Wybierz interfejs do wykonania operacji:");
+				System.out.println("1. Zwieksz wiek");
+				System.out.println("2. Zmniejsz wiek");
+
+				int option = readIntInput();
+				switch (option) {
+						case 1:
+								increaseAgeForAll();
+								break;
+						case 2:
+								decreaseAgeForAll();
+								break;
+						default:
+								System.out.println("Nieprawidłowy wybór. Powrót do menu głównego.");
+				}
+		}
+
+		private static void increaseAgeForAll() {
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof PerformOperation) {
+								((PerformOperation) obj).ageup();
+						}
+				}
+				System.out.println("Zwiekszono wiek dla wszystkich obiektów obsługujących ten interfejs.");
+		}
+
+		private static void decreaseAgeForAll() {
+				for (DataBaseObject obj : objectsList) {
+						if (obj instanceof PerformOperation) {
+								((PerformOperation) obj).agedown();
+						}
+				}
+				System.out.println("Zmniejszono wiek dla wszystkich obiektów obsługujących ten interfejs.");
+		}
+
+
 		public static void main(String[] args) {
 				int choice;
 
@@ -665,6 +742,7 @@ public class Main {
 						System.out.println("4. Wyświetlanie obiektów według typu");
 						System.out.println("5. Wyświetlanie obiektów, których nazwa zawiera podany ciąg znaków");
 						System.out.println("6. Wykonanie operacji zawartej w interfejsie na wszystkich obiektach klas implementujących ten interfejs.");
+						System.out.println("7. Dodaj przykładowe dane");
 						System.out.println("10. Wyjdź");
 						System.out.print("Wybierz opcję: ");
 						choice = readIntInput();
@@ -686,6 +764,10 @@ public class Main {
 										displayObjectsByName();
 										break;
 								case 6:
+										interfaceMenu();
+										break;
+								case 7:
+										testData();
 										break;
 								case 10:
 										System.out.println("Koniec programu.");

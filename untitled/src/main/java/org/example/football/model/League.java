@@ -2,11 +2,8 @@ package org.example.football.model;
 
 import org.example.football.utils.PerformOperation;
 
-public class League extends DataBaseObject implements PerformOperation {
-		@Override
-		public void performOperation() {
+public class League extends DataBaseObject {
 
-		}
 
 		private String leagueName;
 

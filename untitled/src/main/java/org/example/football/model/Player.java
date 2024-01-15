@@ -1,9 +1,10 @@
 package org.example.football.model;
 
 import org.example.football.utils.Foot;
+import org.example.football.utils.PerformOperation;
 import org.example.football.utils.Position;
 
-public class Player extends Person {
+public class Player extends Person implements PerformOperation {
 		private int number;
 		private Float salary;
 		private Foot preferredFoot;
@@ -63,13 +64,19 @@ public class Player extends Person {
 				this.playerPosition = playerPosition;
 		}
 
-		@Override
-		public void performOperation() {
-
-		}
 
 		@Override
 		public String getPersonInfo() {
 				return null;
+		}
+
+		@Override
+		public void ageup() {
+				setAge((short) (getAge() + 1));
+		}
+
+		@Override
+		public void agedown() {
+				setAge((short) (getAge() - 1));
 		}
 }

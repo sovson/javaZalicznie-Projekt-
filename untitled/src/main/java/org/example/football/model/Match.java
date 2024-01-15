@@ -4,7 +4,7 @@ import org.example.football.utils.PerformOperation;
 
 import java.util.List;
 
-public class Match extends DataBaseObject implements PerformOperation {
+public class Match extends DataBaseObject {
 
 		private String Stadium;
 		private Team homeTeam;
@@ -74,8 +74,5 @@ public class Match extends DataBaseObject implements PerformOperation {
 				this.matchReferee = matchReferee;
 		}
 
-		@Override
-		public void performOperation() {
 
-		}
 }

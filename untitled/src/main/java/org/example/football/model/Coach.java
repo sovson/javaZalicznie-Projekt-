@@ -1,6 +1,8 @@
 package org.example.football.model;
 
-public class Coach extends Person {
+import org.example.football.utils.PerformOperation;
+
+public class Coach extends Person implements PerformOperation {
 		private Float experience;
 
 		@Override
@@ -27,9 +29,15 @@ public class Coach extends Person {
 				this.experience = experience;
 		}
 
-		@Override
-		public void performOperation() {
 
+		@Override
+		public void ageup() {
+				setAge((short) (getAge() + 1));
+		}
+
+		@Override
+		public void agedown() {
+				setAge((short) (getAge() - 1));
 		}
 
 		@Override

@@ -1,6 +1,8 @@
 package org.example.football.model;
 
-public class Referee extends Person {
+import org.example.football.utils.PerformOperation;
+
+public class Referee extends Person implements PerformOperation {
 		private String level;
 
 		@Override
@@ -27,10 +29,17 @@ public class Referee extends Person {
 				this.level = level;
 		}
 
-		@Override
-		public void performOperation() {
 
+		@Override
+		public void ageup() {
+				setAge((short) (getAge() + 1));
 		}
+
+		@Override
+		public void agedown() {
+				setAge((short) (getAge() - 1));
+		}
+
 
 		@Override
 		public String getPersonInfo() {
