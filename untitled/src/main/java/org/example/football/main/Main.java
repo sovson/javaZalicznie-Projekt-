@@ -17,40 +17,42 @@ public class Main {
 				// Dodawanie przykładowych danych dla piłkarzy
 				objectsList.add(new Player("Robert Lewandowski", "15.01.2024", (short) 33, 10, 9, 5000000F, Foot.RIGHT, Position.STRIKER));
 				objectsList.add(new Player("Lionel Messi", "15.01.2024", (short) 35, 10, 10, 7000000F, Foot.LEFT, Position.STRIKER));
+				objectsList.add(new Player("Cristiano Ronaldo", "15.01.2024", (short) 36, 11, 7, 8000000F, Foot.RIGHT, Position.STRIKER));
+				objectsList.add(new Player("Neymar Jr.", "15.01.2024", (short) 29, 12, 11, 6000000F, Foot.LEFT, Position.STRIKER));
+				objectsList.add(new Player("Mohamed Salah", "15.01.2024", (short) 29, 13, 10, 5500000F, Foot.LEFT, Position.STRIKER));
+				objectsList.add(new Player("Kevin De Bruyne", "15.01.2024", (short) 30, 14, 17, 7000000F, Foot.RIGHT, Position.MIDFIELDER));
+				objectsList.add(new Player("Sadio Mané", "15.01.2024", (short) 30, 15, 10, 5500000F, Foot.LEFT, Position.STRIKER));
+				objectsList.add(new Player("Kylian Mbappé", "15.01.2024", (short) 23, 16, 7, 7500000F, Foot.RIGHT, Position.STRIKER));
+				objectsList.add(new Player("Joshua Kimmich", "15.01.2024", (short) 27, 17, 6, 6000000F, Foot.RIGHT, Position.MIDFIELDER));
+				objectsList.add(new Player("Virgil van Dijk", "15.01.2024", (short) 30, 18, 4, 7000000F, Foot.RIGHT, Position.DEFENDER));
 
 				// Dodawanie przykładowych danych dla trenerów
 				objectsList.add(new Coach("Jurgen Klopp", "15.01.2024", (short) 55, 101, 20F));
 				objectsList.add(new Coach("Pep Guardiola", "15.01.2024", (short) 51, 102, 22F));
+				objectsList.add(new Coach("Zinedine Zidane", "15.01.2024", (short) 49, 103, 18F));
+				objectsList.add(new Coach("Carlo Ancelotti", "15.01.2024", (short) 62, 104, 25F));
+				objectsList.add(new Coach("Diego Simeone", "15.01.2024", (short) 51, 105, 19F));
 
 				// Dodawanie przykładowych danych dla sędziów
 				objectsList.add(new Referee("Howard Webb", "15.01.2024", (short) 51, 201, "WorldClass"));
 				objectsList.add(new Referee("Pierluigi Collina", "15.01.2024", (short) 62, 202, "Legendary"));
-
-				// Dodawanie przykładowych danych dla lig
-				objectsList.add(new League(IdGenerator.generateId(), "Poland", "15.01.2024", "Ekstraklasa"));
-				objectsList.add(new League(IdGenerator.generateId(), "England", "15.01.2024", "Premier League"));
+				objectsList.add(new Referee("Felix Brych", "15.01.2024", (short) 46, 203, "Experienced"));
+				objectsList.add(new Referee("Björn Kuipers", "15.01.2024", (short) 48, 204, "Veteran"));
+				objectsList.add(new Referee("Cüneyt Çakır", "15.01.2024", (short) 45, 205, "Respected"));
 
 				// Dodawanie przykładowych danych dla goli
 				Player scorer1 = findPlayerById(1);
 				Player scorer2 = findPlayerById(2);
+				Player scorer3 = findPlayerById(3);
+				Player scorer4 = findPlayerById(4);
+				Player scorer5 = findPlayerById(5);
 				objectsList.add(new Goal(IdGenerator.generateId(), "", "75", scorer1));
 				objectsList.add(new Goal(IdGenerator.generateId(), "", "34", scorer2));
-
-				// Dodawanie przykładowych danych dla drużyn
-				Coach coach1 = findCoachById(3);
-				Coach coach2 = findCoachById(4);
-				objectsList.add(new Team(IdGenerator.generateId(), "Poland", "15.01.2024", "National Team", 15, coach1));
-				objectsList.add(new Team(IdGenerator.generateId(), "Barcelona", "15.01.2024", "FC Barcelona", 25, coach2));
-
-				// Dodawanie przykładowych danych dla meczów
-				Team homeTeam = findTeamById(11);
-				Team awayTeam = findTeamById(12);
-				Referee referee = findRefereeById(6);
-				List<Goal> goals = new ArrayList<>();
-				goals.add(findGoalById(9));
-				goals.add(findGoalById(10));
-				objectsList.add(new Match(IdGenerator.generateId(), "Friendly Match", "15.01.2024", "Stadium", homeTeam, awayTeam, goals, referee));
+				objectsList.add(new Goal(IdGenerator.generateId(), "", "55", scorer3));
+				objectsList.add(new Goal(IdGenerator.generateId(), "", "20", scorer4));
+				objectsList.add(new Goal(IdGenerator.generateId(), "", "87", scorer5));
 		}
+
 
 		private static void addNewObject() {
 				System.out.println("Wybierz typ obiektu do dodania:");
@@ -186,8 +188,32 @@ public class Main {
 
 				League newLeague = new League(id, name, date, leagueName);
 				objectsList.add(newLeague);
+
+				// Dodawanie drużyn do ligi
+				System.out.println("Dodawanie drużyn do ligi:");
+				boolean addTeam = true;
+
+				while (addTeam) {
+						System.out.print("ID drużyny do dodania do ligi: ");
+						int teamId = readIntInput();
+						Team team = findTeamById(teamId);
+
+						if (team != null) {
+								newLeague.addTeam(team);
+								System.out.println("Drużyna dodana do ligi!");
+						} else {
+								System.out.println("Drużyna o podanym ID nie została znaleziona.");
+						}
+
+						System.out.print("Czy chcesz dodać kolejną drużynę do ligi? (Tak/Nie): ");
+						String addAnotherTeam = scanner.next().toLowerCase();
+
+						addTeam = addAnotherTeam.equals("tak");
+				}
+
 				System.out.println("Nowa liga została dodana!");
 		}
+
 
 		private static void addGoal() {
 				System.out.println("Dodawanie nowego gola:");
@@ -280,11 +306,8 @@ public class Main {
 				System.out.println("Nowa drużyna została dodana!");
 		}
 
-
 		private static void addMatch() {
 				System.out.println("Dodawanie nowego meczu:");
-
-				System.out.print("ID: ");
 				int id = IdGenerator.generateId();
 
 				scanner.nextLine();

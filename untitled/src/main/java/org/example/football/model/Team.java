@@ -9,6 +9,7 @@ public class Team extends DataBaseObject {
 		private int pointsLeague;
 		private Coach coach;
 		private List<Player> players;
+		private League league;
 
 
 		@Override
@@ -20,6 +21,7 @@ public class Team extends DataBaseObject {
 								", Nazwa drużyny: '" + teamName + '\'' +
 								", Ilość punktów w lidze: " + pointsLeague +
 								", Trener: " + (coach != null ? coach.getName() : "Brak trenera") +
+								", Liga: " + (league != null ? league.getLeagueName() : "Brak przypisanej ligi") +
 								", Zawodnicy: ");
 				if (players.isEmpty()) {
 						result.append("Brak zawodników w drużynie.");
@@ -40,6 +42,14 @@ public class Team extends DataBaseObject {
 				assignCoach(coach);
 				this.players = new ArrayList<>();
 
+		}
+
+		public League getLeague() {
+				return league;
+		}
+
+		public void setLeague(League league) {
+				this.league = league;
 		}
 
 		public void addPlayer(Player player) {
