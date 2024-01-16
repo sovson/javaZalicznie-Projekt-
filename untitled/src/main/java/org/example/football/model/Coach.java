@@ -4,6 +4,7 @@ import org.example.football.utils.PerformOperation;
 
 public class Coach extends Person implements PerformOperation {
 		private Float experience;
+		private Team team;
 
 		@Override
 		public String toString() {
@@ -13,12 +14,14 @@ public class Coach extends Person implements PerformOperation {
 								", Data urodzin: " + getDate() +
 								", Wiek: " + getAge() +
 								", Numer krajowy: " + getNationalID() +
-								", Doświadczenie (lata): " + experience;
+								", Doświadczenie (lata): " + experience +
+								(team != null ? ", Prowadzi drużynę: " + team.getTeamName() : ", Brak drużyny");
 		}
 
 		public Coach(String name, String date, Short age, int nationalID, Float experience) {
 				super(name, date, age, nationalID);
 				this.experience = experience;
+				this.team = null;
 		}
 
 		public Float getExperience() {
@@ -44,4 +47,20 @@ public class Coach extends Person implements PerformOperation {
 		public String getPersonInfo() {
 				return null;
 		}
+
+		public void setTeam(Team team) {
+				this.team = team;
+		}
+
+		public Team getTeam() {
+				return team;
+		}
+
+		public void removeTeam() {
+				if (team != null) {
+						team.setCoach(null);
+						team = null;
+				}
+		}
+
 }

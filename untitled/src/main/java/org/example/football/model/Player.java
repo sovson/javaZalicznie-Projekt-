@@ -9,6 +9,7 @@ public class Player extends Person implements PerformOperation {
 		private Float salary;
 		private Foot preferredFoot;
 		private Position playerPosition;
+		private Team team;
 
 		@Override
 		public String toString() {
@@ -21,7 +22,10 @@ public class Player extends Person implements PerformOperation {
 								", Numer na koszulce: " + number +
 								", Wynagrodzenie: " + salary +
 								", Preferowana noga: " + preferredFoot +
-								", Pozycja piłkarza: " + playerPosition;
+								", Pozycja piłkarza: " + playerPosition +
+								", Drużyna: " + (team != null ? team.getTeamName() : "Brak przypisanej drużyny");
+
+
 		}
 
 		public Player(String name, String date, Short age, int nationalID, int number, Float salary, Foot preferredFoot, Position playerPosition) {
@@ -30,6 +34,15 @@ public class Player extends Person implements PerformOperation {
 				this.salary = salary;
 				this.preferredFoot = preferredFoot;
 				this.playerPosition = playerPosition;
+				this.team = null;
+		}
+
+		public Team getTeam() {
+				return team;
+		}
+
+		public void setTeam(Team team) {
+				this.team = team;
 		}
 
 		public int getNumber() {

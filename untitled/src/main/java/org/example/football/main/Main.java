@@ -225,14 +225,61 @@ public class Main {
 				System.out.print("Punkty w lidze: ");
 				int pointsLeague = readIntInput();
 
-				System.out.print("ID Trenera: ");
-				int coachId = readIntInput();
-				Coach coach = findCoachById(coachId);
+				boolean validCoach = false;
+				Coach coach = null;
 
-				Team newTeam = new Team(id, name, date, teamName, pointsLeague, coach);
+				int attempts = 0;
+				int maxAttempts = 3;
+
+				while (!validCoach && attempts < maxAttempts) {
+						System.out.print("ID Trenera: ");
+						int coachId = readIntInput();
+						coach = findCoachById(coachId);
+
+						if (coach != null && coach.getTeam() == null) {
+								validCoach = true;
+						} else if (coach == null) {
+								System.out.println("Trener o podanym ID nie został znaleziony.");
+						} else {
+								System.out.println("Trener już prowadzi inną drużynę. Podaj innego trenera.");
+						}
+
+						attempts++;
+
+						if (attempts == maxAttempts) {
+								System.out.println("Osiągnięto maksymalną liczbę prób. Dodawanie drużyny przerwane.");
+								return;
+						}
+				}
+
+				Team newTeam = new Team(id, name, date, teamName, pointsLeague, coach);  // Zdefiniowanie newTeam przed użyciem
 				objectsList.add(newTeam);
+
+				boolean addAnotherPlayer = true;
+
+				while (addAnotherPlayer) {
+						System.out.print("ID Piłkarza do dodania do drużyny: ");
+						int playerId = readIntInput();
+						Player player = findPlayerById(playerId);
+
+						if (player != null) {
+								newTeam.addPlayer(player);
+						} else {
+						}
+
+						System.out.print("Czy chcesz dodać kolejnego zawodnika? (tak/nie): ");
+						String userInput = scanner.next().toLowerCase();
+
+						if (!userInput.equals("tak")) {
+								addAnotherPlayer = false;
+						}
+				}
+
+				coach.setTeam(newTeam);
+
 				System.out.println("Nowa drużyna została dodana!");
 		}
+
 
 		private static void addMatch() {
 				System.out.println("Dodawanie nowego meczu:");
@@ -337,6 +384,12 @@ public class Main {
 				for (Iterator<DataBaseObject> iterator = objectsList.iterator(); iterator.hasNext(); ) {
 						DataBaseObject obj = iterator.next();
 						if (obj.getId() == objectId && obj.getClass().equals(objectType)) {
+								if (obj instanceof Coach) {
+										((Coach) obj).removeTeam();
+								} else if (obj instanceof Team) {
+										((Team) obj).removeCoach();
+								}
+
 								iterator.remove();
 								System.out.println("Obiekt został usunięty.");
 								return;
@@ -360,7 +413,7 @@ public class Main {
 								removeObjectById(objectId, Referee.class);
 								break;
 						case 4:
-								removeObjectById(objectId, Match.class);
+								removeObjectById(objectId, Goal.class);
 								break;
 						case 5:
 								removeObjectById(objectId, Team.class);
@@ -369,7 +422,7 @@ public class Main {
 								removeObjectById(objectId, League.class);
 								break;
 						case 7:
-								removeObjectById(objectId, Goal.class);
+								removeObjectById(objectId, Match.class);
 								break;
 						case 10:
 								break;
@@ -381,7 +434,7 @@ public class Main {
 		private static void displayAllObjects() {
 				System.out.println("Wyświetlanie wszystkich obiektów: ");
 
-				Class<?>[] objectTypes = {Player.class, Coach.class, Referee.class, League.class, Goal.class, Team.class};
+				Class<?>[] objectTypes = {Player.class, Coach.class, Referee.class, League.class, Goal.class, Team.class, Match.class};
 
 				for (Class<?> objectType : objectTypes) {
 						String typeName = objectType.getSimpleName();
@@ -682,10 +735,10 @@ public class Main {
 				System.out.println("1. Piłkarze");
 				System.out.println("2. Trenerzy");
 				System.out.println("3. Sędziowie");
-				System.out.println("4. Mecze");
+				System.out.println("4. Gole");
 				System.out.println("5. Drużyny");
 				System.out.println("6. Ligi");
-				System.out.println("7. Gole");
+				System.out.println("7. Mecze");
 				System.out.println("10. Cofnij się do menu głównego");
 		}
 
