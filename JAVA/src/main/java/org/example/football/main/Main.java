@@ -14,7 +14,6 @@ public class Main {
 		private static final List<DataBaseObject> objectsList = new ArrayList<>();
 
 		private static void testData() {
-				// Dodawanie przykładowych danych dla piłkarzy
 				objectsList.add(new Player("Robert Lewandowski", "15.01.2024", (short) 33, 10, 9, 5000000F, Foot.RIGHT, Position.STRIKER));
 				objectsList.add(new Player("Lionel Messi", "15.01.2024", (short) 35, 10, 10, 7000000F, Foot.LEFT, Position.STRIKER));
 				objectsList.add(new Player("Cristiano Ronaldo", "15.01.2024", (short) 36, 11, 7, 8000000F, Foot.RIGHT, Position.STRIKER));
@@ -26,21 +25,18 @@ public class Main {
 				objectsList.add(new Player("Joshua Kimmich", "15.01.2024", (short) 27, 17, 6, 6000000F, Foot.RIGHT, Position.MIDFIELDER));
 				objectsList.add(new Player("Virgil van Dijk", "15.01.2024", (short) 30, 18, 4, 7000000F, Foot.RIGHT, Position.DEFENDER));
 
-				// Dodawanie przykładowych danych dla trenerów
 				objectsList.add(new Coach("Jurgen Klopp", "15.01.2024", (short) 55, 101, 20F));
 				objectsList.add(new Coach("Pep Guardiola", "15.01.2024", (short) 51, 102, 22F));
 				objectsList.add(new Coach("Zinedine Zidane", "15.01.2024", (short) 49, 103, 18F));
 				objectsList.add(new Coach("Carlo Ancelotti", "15.01.2024", (short) 62, 104, 25F));
 				objectsList.add(new Coach("Diego Simeone", "15.01.2024", (short) 51, 105, 19F));
 
-				// Dodawanie przykładowych danych dla sędziów
 				objectsList.add(new Referee("Howard Webb", "15.01.2024", (short) 51, 201, "WorldClass"));
 				objectsList.add(new Referee("Pierluigi Collina", "15.01.2024", (short) 62, 202, "Legendary"));
 				objectsList.add(new Referee("Felix Brych", "15.01.2024", (short) 46, 203, "Experienced"));
 				objectsList.add(new Referee("Björn Kuipers", "15.01.2024", (short) 48, 204, "Veteran"));
 				objectsList.add(new Referee("Cüneyt Çakır", "15.01.2024", (short) 45, 205, "Respected"));
 
-				// Dodawanie przykładowych danych dla goli
 				Player scorer1 = findPlayerById(1);
 				Player scorer2 = findPlayerById(2);
 				Player scorer3 = findPlayerById(3);
@@ -189,7 +185,6 @@ public class Main {
 				League newLeague = new League(id, name, date, leagueName);
 				objectsList.add(newLeague);
 
-				// Dodawanie drużyn do ligi
 				System.out.println("Dodawanie drużyn do ligi:");
 				boolean addTeam = true;
 
@@ -278,7 +273,7 @@ public class Main {
 						}
 				}
 
-				Team newTeam = new Team(id, name, date, teamName, pointsLeague, coach);  // Zdefiniowanie newTeam przed użyciem
+				Team newTeam = new Team(id, name, date, teamName, pointsLeague, coach);
 				objectsList.add(newTeam);
 
 				boolean addAnotherPlayer = true;

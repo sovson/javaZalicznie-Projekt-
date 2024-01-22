@@ -13,7 +13,7 @@ public class Referee extends Person implements PerformOperation {
 								", Data urodzin: " + getDate() +
 								", Wiek: " + getAge() +
 								", Numer krajowy: " + getNationalID() +
-								", poziom sędziowski (w latach): " + level;
+								", poziom sędziowski: " + level;
 		}
 
 		public Referee(String name, String date, Short age, int nationalID, String level) {
